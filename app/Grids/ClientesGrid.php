@@ -22,7 +22,6 @@ class ClientesGrid extends Grid implements ClientesGridInterface
     protected $buttonsToGenerate = [
         'create',
         'view',
-        'delete',
         'refresh',
         'export'
     ];
@@ -53,15 +52,6 @@ class ClientesGrid extends Grid implements ClientesGridInterface
 		            "column" => "grid-w-10"
 		        ]
 		    ],
-		    "id_user" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ],
 		    "nombre" => [
 		        "search" => [
 		            "enabled" => true
@@ -80,15 +70,6 @@ class ClientesGrid extends Grid implements ClientesGridInterface
 		            "operator" => "="
 		        ]
 		    ],
-		    "direccion" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ],
 		    "email" => [
 		        "search" => [
 		            "enabled" => true
@@ -98,15 +79,6 @@ class ClientesGrid extends Grid implements ClientesGridInterface
 		            "operator" => "="
 		        ]
 		    ],
-		    "fecha_alta" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ]
 		];
     }
 
@@ -155,6 +127,40 @@ class ClientesGrid extends Grid implements ClientesGridInterface
         // call `editToolbarButton` to edit a toolbar button
         // call `editRowButton` to edit a row button
         // call `editButtonProperties` to do either of the above. All the edit functions accept the properties as an array
+        $this->editToolbarButton('refresh', [
+            'name' => 'Recargar',
+        ]);
+        $this->editRowButton('view', [
+            'name' => 'Ver',
+        ]);
+        $this->editToolbarButton('create', [
+            'name' => 'Crear',
+        ]);
+        $this->editToolbarButton('export', [
+            'name' => 'Descargar',
+        ]);
+        $this->makeCustomButton([
+            // an icon for the button, as chosen from font-awesome. Defaults to null
+            'icon' => 'fa-edit',
+            // the name of the button. Defaults to Unknown
+            'name' => 'actualizar',
+            // css class for the button. Defaults to `btn btn-default`
+            'class' => '',
+            // function that will be called to determine if the button will be displayed. Defaults to null
+            'renderIf' => function() {return true;}, 
+            // a link for this button. using the function specified will get an already existing route. Otherwise you can use any of
+            // laravel's helper functions to get a url. Defaults to #
+            // it accepts both a string and a callbac. See the scenarios below
+            'url' => function($gridName, $gridItem) {
+                return route('clientes.update', ['id' => $gridItem->id]);
+            },
+            // where to the left or right with respect to other buttons would it be displayed. Higher means it will slide over to the far left, 
+            // and lower means it will slide over to the far right. Its actually a sort run over the collection of buttons, and this argument
+            // passed in the callback as an arg. Defaults to null
+            'position' => 99,
+            // if an action on it would trigger a PJAX action. Defaults to false
+            'pjaxEnabled' => true, 
+        ], 'rows');
     }
 
     /**

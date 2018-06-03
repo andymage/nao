@@ -20,4 +20,8 @@ class Clientes extends Model
 		'direccion',
 		'email',
 	];
+
+	public function user(){
+		return $this->hasOne('App\User', 'id', 'id_user');
+	}
 }

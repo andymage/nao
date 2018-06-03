@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 
-class ProveedoresRequest extends FormRequest
+class ClientesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class ProveedoresRequest extends FormRequest
             'nombre' => 'required',
             'clave_corta' => 'required|min:2|max:2|unique:proveedores,clave_corta',
             'direccion' => 'required',
-            'telefono' => 'numeric|required|digits_between:8,13'
+            'email' => 'email'
         ];
     }
 
@@ -37,7 +37,7 @@ class ProveedoresRequest extends FormRequest
             'nombre' => 'Nombre',
             'clave_corta' => 'Clave Corta',
             'direccion' => 'Dirección',
-            'telefono' => 'Teléfono'
+            'email' => 'E-mail'
         ];
     }
 }

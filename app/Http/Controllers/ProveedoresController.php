@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Grids\ProveedoresGrid;
 use App\Proveedores;
 use App\Http\Requests\ProveedoresRequest;
+use App\Http\Requests\ProveedoresUpdateRequest;
 
 class ProveedoresController extends Controller
 {
@@ -31,12 +32,33 @@ class ProveedoresController extends Controller
         ]);
     }
 
+    public function update($id){
+        $model = $this->findModel($id);
+        return view('proveedores.update',[
+            'model' => $model
+        ]);
+    }
+
+    public function edit($id, ProveedoresUpdateRequest $request){
+        $model = $this->findModel($id);
+        $model->telefono = $request->get('telefono');
+        $model->direccion = $request->get('direccion');
+        $model->nombre = $request->get('nombre');
+        $model->clave_corta = $request->get('clave_corta');
+        if ($model->save()) {
+            flash('Actualizado Correctamente!')->success();
+            return redirect('proveedores/show/' . $model->id);
+        }
+        flash('¡Ocurrió un error, inténtalo nuevamente!')->success();
+        return redirect('proveedores/show/' . $model->id);
+    }
+
     public function store(ProveedoresRequest $request){
         $data = $request->all();
         $data['id_user'] = $request->user()->id;
         $model = Proveedores::create($data);
         flash('¡Creado Correctamente!')->success();
-        return redirect('proveedores/index');
+        return redirect('proveedores/show/' . $model->id);
     }
 
     protected function findModel($id)

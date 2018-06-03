@@ -57,3 +57,54 @@ Route::get('proveedores/update/{id}', [
 	'middleware' => 'auth',
 	'as' => 'proveedores.update'
 ]);
+
+Route::post('proveedores/edit/{id}', [
+	'uses' => 'ProveedoresController@edit',
+	'middleware' => 'auth',
+	'as' => 'proveedores.edit'
+]);
+
+/**
+ * Rutas Clientes
+ */
+Route::get('clientes/index', [
+	'uses' => 'ClientesController@index',
+	'middleware' => 'auth',
+	'as' => 'clientes.index'
+]);
+
+Route::get('clientes/create', [
+	'uses' => 'ClientesController@create',
+	'middleware' => 'auth',
+	'as' => 'clientes.create'
+]);
+
+Route::post('clientes/store', [
+	'uses' => 'ClientesController@store',
+	'middleware' => 'auth',
+	'as' => 'clientes.store'
+]);
+
+Route::get('clientes/show/{id}', [
+	'uses' => 'ClientesController@show',
+	'middleware' => 'auth',
+	'as' => 'clientes.show'
+]);
+
+Route::get('clientes/destroy/{id}', [
+	'uses' => 'ClientesController@destroy',
+	'middleware' => 'auth',
+	'as' => 'clientes.destroy'
+]);
+
+Route::get('clientes/update/{id}', [
+	'uses' => 'ClientesController@update',
+	'middleware' => 'auth',
+	'as' => 'clientes.update'
+]);
+
+Route::post('clientes/edit/{id}', [
+	'uses' => 'ClientesController@edit',
+	'middleware' => 'auth',
+	'as' => 'clientes.edit'
+]);

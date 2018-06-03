@@ -22,7 +22,7 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
     protected $buttonsToGenerate = [
         'create',
         'view',
-        'update',
+        'actulizar',
         'refresh',
         'export'
     ];
@@ -53,15 +53,6 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		            "column" => "grid-w-10"
 		        ]
 		    ],
-		    "id_user" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ],
 		    "nombre" => [
 		        "search" => [
 		            "enabled" => true
@@ -80,15 +71,6 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		            "operator" => "="
 		        ]
 		    ],
-		    "direccion" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ],
 		    "telefono" => [
 		        "search" => [
 		            "enabled" => true
@@ -98,15 +80,6 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		            "operator" => "="
 		        ]
 		    ],
-		    "fecha_alta" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ]
 		];
     }
 
@@ -156,16 +129,41 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
         // call `editRowButton` to edit a row button
         // call `editButtonProperties` to do either of the above. All the edit functions accept the properties as an array
         // editing the view button
+        // editing the refresh button
+        $this->editToolbarButton('refresh', [
+            'name' => 'Recargar',
+        ]);
+        $this->editRowButton('view', [
+            'name' => 'Ver',
+        ]);
+        $this->editToolbarButton('create', [
+            'name' => 'Crear',
+        ]);
+        $this->editToolbarButton('export', [
+            'name' => 'Descargar',
+        ]);
         $this->makeCustomButton([
-            'icon' => 'fa-user',
-            'name' => 'custom',
-            'class' => 'btn btn-info',
-            // $gridName represents a short singular name for the grid. E.g `Users` for a grid name resolves to `user`
-            // $gridItem represents the current data item being iterated on. It should be an eloquent model instance
+            // an icon for the button, as chosen from font-awesome. Defaults to null
+            'icon' => 'fa-edit',
+            // the name of the button. Defaults to Unknown
+            'name' => 'actualizar',
+            // css class for the button. Defaults to `btn btn-default`
+            'class' => '',
+            // function that will be called to determine if the button will be displayed. Defaults to null
+            'renderIf' => function() {return true;}, 
+            // a link for this button. using the function specified will get an already existing route. Otherwise you can use any of
+            // laravel's helper functions to get a url. Defaults to #
+            // it accepts both a string and a callbac. See the scenarios below
             'url' => function($gridName, $gridItem) {
-                return route('proveedores.update', [$gridName => $gridItem->id]);
+                return route('proveedores.update', ['id' => $gridItem->id]);
             },
-        ], 'row');
+            // where to the left or right with respect to other buttons would it be displayed. Higher means it will slide over to the far left, 
+            // and lower means it will slide over to the far right. Its actually a sort run over the collection of buttons, and this argument
+            // passed in the callback as an arg. Defaults to null
+            'position' => 99,
+            // if an action on it would trigger a PJAX action. Defaults to false
+            'pjaxEnabled' => true, 
+        ], 'rows');
     }
 
     /**

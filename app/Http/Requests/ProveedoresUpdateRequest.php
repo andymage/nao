@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-
-class ProveedoresRequest extends FormRequest
+class ProveedoresUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,11 @@ class ProveedoresRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
             'nombre' => 'required',
-            'clave_corta' => 'required|min:2|max:2|unique:proveedores,clave_corta',
+            'clave_corta' => 'required|min:2|max:2|unique:proveedores,clave_corta,' . $request->get('id'),
             'direccion' => 'required',
             'telefono' => 'numeric|required|digits_between:8,13'
         ];
