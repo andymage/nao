@@ -20,4 +20,8 @@ class Proveedores extends Model
 		'direccion',
 		'telefono',
 	];
+
+	public function user(){
+		return $this->hasOne('App\User', 'id', 'id_user');
+	}
 }

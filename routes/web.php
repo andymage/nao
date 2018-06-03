@@ -40,14 +40,20 @@ Route::post('proveedores/store', [
 	'as' => 'proveedores.store'
 ]);
 
-Route::get('proveedores/show', [
+Route::get('proveedores/show/{id}', [
 	'uses' => 'ProveedoresController@show',
 	'middleware' => 'auth',
 	'as' => 'proveedores.show'
 ]);
 
-Route::get('proveedores/destroy', [
+Route::get('proveedores/destroy/{id}', [
 	'uses' => 'ProveedoresController@destroy',
 	'middleware' => 'auth',
 	'as' => 'proveedores.destroy'
+]);
+
+Route::get('proveedores/update/{id}', [
+	'uses' => 'ProveedoresController@update',
+	'middleware' => 'auth',
+	'as' => 'proveedores.update'
 ]);

@@ -22,7 +22,7 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
     protected $buttonsToGenerate = [
         'create',
         'view',
-        'delete',
+        'update',
         'refresh',
         'export'
     ];
@@ -155,6 +155,17 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
         // call `editToolbarButton` to edit a toolbar button
         // call `editRowButton` to edit a row button
         // call `editButtonProperties` to do either of the above. All the edit functions accept the properties as an array
+        // editing the view button
+        $this->makeCustomButton([
+            'icon' => 'fa-user',
+            'name' => 'custom',
+            'class' => 'btn btn-info',
+            // $gridName represents a short singular name for the grid. E.g `Users` for a grid name resolves to `user`
+            // $gridItem represents the current data item being iterated on. It should be an eloquent model instance
+            'url' => function($gridName, $gridItem) {
+                return route('proveedores.update', [$gridName => $gridItem->id]);
+            },
+        ], 'row');
     }
 
     /**
