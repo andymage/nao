@@ -47,7 +47,7 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		        "label" => "ID",
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "="
+		            "operator" => "like"
 		        ],
 		        "styles" => [
 		            "column" => "grid-w-10"
@@ -59,7 +59,7 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		        ],
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "="
+		            "operator" => "like"
 		        ]
 		    ],
 		    "clave_corta" => [
@@ -68,7 +68,7 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		        ],
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "="
+		            "operator" => "like"
 		        ]
 		    ],
 		    "telefono" => [
@@ -77,7 +77,7 @@ class ProveedoresGrid extends Grid implements ProveedoresGridInterface
 		        ],
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "="
+		            "operator" => "like"
 		        ]
 		    ],
 		];

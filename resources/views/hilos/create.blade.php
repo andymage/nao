@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['clientes/index', 'Lista de Clientes'],
-		['clientes/create/', 'Crear Cliente']
+		['hilos/index', 'Lista de Hilos'],
+		['hilos/create/', 'Crear Hilo']
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Crear Cliente</h3>
+		        <h3 class="box-title">Crear Hilo</h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => 'ClientesController@store',
+		                'action' => 'HilosController@store',
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,49 +34,25 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="nombre">Nombre Cliente</label>
+		                <label for="calibre">Calibre</label>
 		                <?=
-		                	Form::text('nombre',
+		                	Form::text('calibre',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Nombre Cliente'
+		                			'placeholder' => 'Calibre'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="clave_corta">Clave Corta</label>
-		            	<?=
-		                	Form::text('clave_corta',
+		                <label for="calibre">Cve Corta Hilo</label>
+		                <?=
+		                	Form::text('cve_corta_hilo',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Clave Corta'
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="direccion">Dirección</label>
-		            	<?=
-		                	Form::text('direccion',
-		                		null,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'Direccion'
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="direccion">E-mail</label>
-		            	<?=
-		                	Form::text('email',
-		                		null,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'E-mail'
+		                			'placeholder' => 'Cve Corta Hilo'
 		                		]
 		                	);
 		                ?>

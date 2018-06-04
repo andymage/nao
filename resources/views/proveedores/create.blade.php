@@ -1,6 +1,15 @@
+<?php
+	use App\Helper;
+?>
 @extends('layouts.app')
 
 @section('content')
+<?= 
+	Helper::breadCrumbs([
+		['proveedores/index', 'Lista de Proveedores'],
+		['proveedores/create/', 'Crear Proveedor']
+	]) 
+?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">

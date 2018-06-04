@@ -1,10 +1,19 @@
+<?php
+	use App\Helper;
+?>
 @extends('layouts.app')
 
 @section('content')
+<?= 
+	Helper::breadCrumbs([
+		['proveedores/index', 'Lista de Proveedores'],
+		['proveedores/update/' . $model->id, 'Proveedor: ' . $model->nombre]
+	]) 
+?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Crear Proveedor</h3>
+		        <h3 class="box-title">Actualizar Proveedor<b><?= $model->nombre ?></b></h3>
 		    </div>
 		    {!! Form::open(
 		            [

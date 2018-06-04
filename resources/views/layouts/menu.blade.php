@@ -4,6 +4,18 @@
     <li class="header">Menú Principal</li>
     <li class="treeview">
         <a href="#">
+            <i class="fa fa-gears"></i> <span>Configuración</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="<?= url('materiales/index') ?>"><i class="fa fa-circle-o"></i> Lista Materiales</a></li>
+            <li><a href="<?= url('hilos/index') ?>"><i class="fa fa-circle-o"></i> Lista Hilos</a></li>
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
             <i class="fa fa-cart-plus"></i> <span>Proveedores</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>

@@ -33,7 +33,7 @@ class Helper
 	 * @param array
 	 * @return html|string
 	 */
-	public static function ArrayHelperSelect($array){
+	public static function arrayHelperSelect($array){
 		if (is_array($array)) {
 			return [NULL => 'Seleccione'] + $array;
 		}

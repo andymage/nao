@@ -5,14 +5,14 @@ namespace App\Grids;
 use Closure;
 use Leantony\Grid\Grid;
 
-class ClientesGrid extends Grid implements ClientesGridInterface
+class MaterialesGrid extends Grid implements MaterialesGridInterface
 {
     /**
      * The name of the grid
      *
      * @var string
      */
-    protected $name = 'Clientes';
+    protected $name = 'Materiales';
 
     /**
      * List of buttons to be generated on the grid
@@ -52,25 +52,8 @@ class ClientesGrid extends Grid implements ClientesGridInterface
 		            "column" => "grid-w-10"
 		        ]
 		    ],
+		    
 		    "nombre" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "like"
-		        ]
-		    ],
-		    "clave_corta" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "like"
-		        ]
-		    ],
-		    "email" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
@@ -90,12 +73,12 @@ class ClientesGrid extends Grid implements ClientesGridInterface
     public function setRoutes()
     {
         // searching, sorting and filtering
-        $this->setIndexRouteName('clientes.index');
+        $this->setIndexRouteName('materiales.index');
 
         // crud support
-        $this->setCreateRouteName('clientes.create');
-        $this->setViewRouteName('clientes.show');
-        $this->setDeleteRouteName('clientes.destroy');
+        $this->setCreateRouteName('materiales.create');
+        $this->setViewRouteName('materiales.show');
+        $this->setDeleteRouteName('materiales.destroy');
 
         // default route parameter
         $this->setDefaultRouteParameter('id');
@@ -152,7 +135,7 @@ class ClientesGrid extends Grid implements ClientesGridInterface
             // laravel's helper functions to get a url. Defaults to #
             // it accepts both a string and a callbac. See the scenarios below
             'url' => function($gridName, $gridItem) {
-                return route('clientes.update', ['id' => $gridItem->id]);
+                return route('materiales.update', ['id' => $gridItem->id]);
             },
             // where to the left or right with respect to other buttons would it be displayed. Higher means it will slide over to the far left, 
             // and lower means it will slide over to the far right. Its actually a sort run over the collection of buttons, and this argument

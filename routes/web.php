@@ -108,3 +108,102 @@ Route::post('clientes/edit/{id}', [
 	'middleware' => 'auth',
 	'as' => 'clientes.edit'
 ]);
+
+/**
+ * Rutas Materiales
+ */
+Route::get('materiales/index', [
+	'uses' => 'MaterialesController@index',
+	'middleware' => 'auth',
+	'as' => 'materiales.index'
+]);
+
+Route::get('materiales/create', [
+	'uses' => 'MaterialesController@create',
+	'middleware' => 'auth',
+	'as' => 'materiales.create'
+]);
+
+Route::post('materiales/store', [
+	'uses' => 'MaterialesController@store',
+	'middleware' => 'auth',
+	'as' => 'materiales.store'
+]);
+
+Route::get('materiales/show/{id}', [
+	'uses' => 'MaterialesController@show',
+	'middleware' => 'auth',
+	'as' => 'materiales.show'
+]);
+
+Route::get('materiales/destroy/{id}', [
+	'uses' => 'MaterialesController@destroy',
+	'middleware' => 'auth',
+	'as' => 'materiales.destroy'
+]);
+
+Route::get('materiales/update/{id}', [
+	'uses' => 'MaterialesController@update',
+	'middleware' => 'auth',
+	'as' => 'materiales.update'
+]);
+
+Route::post('materiales/edit/{id}', [
+	'uses' => 'MaterialesController@edit',
+	'middleware' => 'auth',
+	'as' => 'materiales.edit'
+]);
+
+
+/**
+ * Rutas Hilos
+ */
+Route::get('hilos/index', [
+	'uses' => 'HilosController@index',
+	'middleware' => 'auth',
+	'as' => 'hilos.index'
+]);
+
+Route::get('hilos/create', [
+	'uses' => 'HilosController@create',
+	'middleware' => 'auth',
+	'as' => 'hilos.create'
+]);
+
+Route::post('hilos/store', [
+	'uses' => 'HilosController@store',
+	'middleware' => 'auth',
+	'as' => 'hilos.store'
+]);
+
+Route::get('hilos/show/{id}', [
+	'uses' => 'HilosController@show',
+	'middleware' => 'auth',
+	'as' => 'hilos.show'
+]);
+
+Route::get('hilos/destroy/{id}', [
+	'uses' => 'HilosController@destroy',
+	'middleware' => 'auth',
+	'as' => 'hilos.destroy'
+]);
+
+Route::get('hilos/update/{id}', [
+	'uses' => 'HilosController@update',
+	'middleware' => 'auth',
+	'as' => 'hilos.update'
+]);
+
+Route::post('hilos/edit/{id}', [
+	'uses' => 'HilosController@edit',
+	'middleware' => 'auth',
+	'as' => 'hilos.edit'
+]);
+
+/**
+ * Rutas Composicion Hilo
+ */
+Route::post('hilos/composicion/{id_hilo}', [
+	'uses' => 'HilosController@createComposicion',
+	'middleware' => 'auth',
+]);

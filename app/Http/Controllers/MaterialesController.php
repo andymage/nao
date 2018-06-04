@@ -3,67 +3,63 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Grids\ClientesGrid;
-use App\Clientes;
-use App\Http\Requests\ClientesRequest;
-use App\Http\Requests\ClientesUpdateRequest;
+use App\Grids\MaterialesGrid;
+use App\Materiales;
+use App\Http\Requests\MaterialesRequest;
 
-class ClientesController extends Controller
+class MaterialesController extends Controller
 {
     public function index(Request $request){
-    	$model = Clientes::getQuery();
-    	$grid = (new ClientesGrid())
+    	$model = Materiales::getQuery();
+    	$grid = (new MaterialesGrid())
             ->create([
                 'query' => $model,
                 'request' => $request
             ])
-            ->renderOn('clientes.index');
+            ->renderOn('materiales.index');
         return $grid;
     }
 
     public function create(){
-    	return view('clientes.create');
+    	return view('materiales.create');
     }
 
-    public function store(ClientesRequest $request){
+    public function store(MaterialesRequest $request){
     	$data = $request->all();
     	$data['id_user'] = $request->user()->id;
-    	$model = Clientes::create($data);
+    	$model = Materiales::create($data);
     	flash('¡Creado Correctamente!')->success();
-        return redirect('clientes/show/' . $model->id);
+        return redirect('materiales/show/' . $model->id);
     }
 
     public function show($id){
     	$model = $this->findModel($id);
-    	return view('clientes.show', [
+    	return view('materiales.show', [
     		'model' => $model
     	]);
     }
 
     public function update($id){
     	$model = $this->findModel($id);
-    	return view('clientes.update',[
+    	return view('materiales.update',[
     		'model' => $model
     	]);
     }
 
-    public function edit($id, ClientesUpdateRequest $request){
+    public function edit($id, MaterialesRequest $request){
     	$model = $this->findModel($id);
     	$model->nombre = $request->get('nombre');
-    	$model->direccion = $request->get('direccion');
-    	$model->email = $request->get('email');
-    	$model->clave_corta = $request->get('clave_corta');
     	if ($model->save()) {
     		flash('¡Actualizado Correctamente!')->success();
-        	return redirect('clientes/show/' . $model->id);
+        	return redirect('materiales/show/' . $model->id);
     	}
     	flash('¡Ocurrió un error, inténtalo nuevamente!')->success();
-        return redirect('clientes/show/' . $model->id);
+        return redirect('materiales/show/' . $model->id);
     }
 
     protected function findModel($id)
     {
-        if (($model = Clientes::find($id)) !== null) {
+        if (($model = Materiales::find($id)) !== null) {
             return $model;
         } else {
             abort(404);
