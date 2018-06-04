@@ -203,7 +203,57 @@ Route::post('hilos/edit/{id}', [
 /**
  * Rutas Composicion Hilo
  */
-Route::post('hilos/composicion/{id_hilo}', [
-	'uses' => 'HilosController@createComposicion',
+Route::get('composicionhilo/index', [
+	'uses' => 'ComposicionHiloController@index',
 	'middleware' => 'auth',
+	'as' => 'composicionhilo.index'
 ]);
+
+Route::get('composicionhilo/create', [
+	'uses' => 'ComposicionHiloController@create',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.create'
+]);
+
+Route::post('composicionhilo/store', [
+	'uses' => 'ComposicionHiloController@store',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.store'
+]);
+
+Route::get('composicionhilo/show/{id}', [
+	'uses' => 'ComposicionHiloController@show',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.show'
+]);
+
+Route::get('composicionhilo/destroy/{id}', [
+	'uses' => 'ComposicionHiloController@destroy',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.destroy'
+]);
+
+Route::get('composicionhilo/update/{id}', [
+	'uses' => 'ComposicionHiloController@update',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.update'
+]);
+
+Route::post('composicionhilo/edit/{id}', [
+	'uses' => 'ComposicionHiloController@edit',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.edit'
+]);
+
+Route::post('composicionhilo/createPorcentaje/{id}', [
+	'uses' => 'ComposicionHiloController@createPorcentaje',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.createPorcentaje'
+]);
+
+Route::get('composicionhilo/destroyporcentaje/{id}', [
+	'uses' => 'ComposicionHiloController@destroyPorcentaje',
+	'middleware' => 'auth',
+	'as' => 'composicionhilo.destroyPorcentaje'
+]);
+

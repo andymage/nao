@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['materiales/index', 'Lista de Materiales'],
-		['materiales/update/' . $model->id, 'Material: ' . $model->nombre]
+		['hilos/index', 'Lista de Calibre de Hilos'],
+		['hilos/update/' . $model->id, 'Calibre de Hilo: ' . $model->cve_corta_hilo]
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Actualizar Material<b><?= $model->nombre ?></b></h3>
+		        <h3 class="box-title">Actualizar Calibre de Hilo<b><?= $model->cve_corta_hilo ?></b></h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => ['MaterialesController@edit', $model->id],
+		                'action' => ['HilosController@edit', $model->id],
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -33,14 +33,14 @@
                     </div>
 	            @endif
 		        <div class="box-body">
-		            <div class="form-group col-md-6">
-		                <label for="nombre">Nombre Material</label>
+		        	<div class="form-group col-md-6">
+		                <label for="calibre">Calibre</label>
 		                <?=
-		                	Form::text('nombre',
-		                		$model->nombre,
+		                	Form::text('calibre',
+		                		$model->calibre,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Nombre Material'
+		                			'placeholder' => 'Calibre'
 		                		]
 		                	);
 		                ?>
@@ -49,6 +49,18 @@
 		                		$model->id,
 		                		[
 		                			'class' => 'form-control hidden',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="calibre">Cve Corta Hilo</label>
+		                <?=
+		                	Form::text('cve_corta_hilo',
+		                		$model->cve_corta_hilo,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Cve Corta Hilo'
 		                		]
 		                	);
 		                ?>

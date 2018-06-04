@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 
-class ComposicionHiloRequest extends FormRequest
+class PorcentajeComposicionHiloRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,15 @@ class ComposicionHiloRequest extends FormRequest
     public function rules()
     {
         return [
-            'cve_corta_composicion' => 'required|numeric|digits_between:1,1',
+            'id_material' => 'required|exists:materiales,id',
+            'porcentaje' => 'required|numeric',
         ];
     }
 
     public function attributes(){
         return [
-            'cve_corta_composicion' => 'Cve Corta Composicion',
+            'id_material' => 'Id Material',
+            'porcentaje' => 'Porcentaje'
         ];
     }
 }

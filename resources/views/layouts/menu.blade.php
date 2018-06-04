@@ -4,14 +4,16 @@
     <li class="header">Menú Principal</li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-gears"></i> <span>Configuración</span>
+            <i class="fa fa-gears"></i> <span>Hilos</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
             <li><a href="<?= url('materiales/index') ?>"><i class="fa fa-circle-o"></i> Lista Materiales</a></li>
-            <li><a href="<?= url('hilos/index') ?>"><i class="fa fa-circle-o"></i> Lista Hilos</a></li>
+            <li><a href="<?= url('hilos/index') ?>"><i class="fa fa-circle-o"></i> Lista Calibre Hilo</a></li>
+            <li><a href="<?= url('composicionhilo/index') ?>"><i class="fa fa-circle-o"></i> Lista Composición Hilo</a></li>
+            <li><a href="<?= url('hilos/index') ?>"><i class="fa fa-circle-o"></i> Lista Textura Color</a></li>
         </ul>
     </li>
     <li class="treeview">

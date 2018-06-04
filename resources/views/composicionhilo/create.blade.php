@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['hilos/index', 'Lista de Calibre de Hilos'],
-		['hilos/create/', 'Crear Calibre Hilo']
+		['composicionhilo/index', 'Lista de Composición de Hilos'],
+		['composicionhilo/create/', 'Crear Composición de Hilo']
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Crear Calibre Hilo</h3>
+		        <h3 class="box-title">Crear Composición de Hilo</h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => 'HilosController@store',
+		                'action' => 'ComposicionHiloController@store',
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,25 +34,13 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="calibre">Calibre</label>
+		                <label for="calibre">Cve Corta Composición</label>
 		                <?=
-		                	Form::text('calibre',
+		                	Form::text('cve_corta_composicion',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Calibre'
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="calibre">Cve Corta Hilo</label>
-		                <?=
-		                	Form::text('cve_corta_hilo',
-		                		null,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'Cve Corta Hilo'
+		                			'placeholder' => 'Cve Corta Composicion'
 		                		]
 		                	);
 		                ?>

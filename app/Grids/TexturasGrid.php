@@ -5,14 +5,14 @@ namespace App\Grids;
 use Closure;
 use Leantony\Grid\Grid;
 
-class HilosGrid extends Grid implements HilosGridInterface
+class TexturasGrid extends Grid implements TexturasGridInterface
 {
     /**
      * The name of the grid
      *
      * @var string
      */
-    protected $name = 'Hilos';
+    protected $name = 'Texturas';
 
     /**
      * List of buttons to be generated on the grid
@@ -22,6 +22,7 @@ class HilosGrid extends Grid implements HilosGridInterface
     protected $buttonsToGenerate = [
         'create',
         'view',
+        'delete',
         'refresh',
         'export'
     ];
@@ -46,30 +47,57 @@ class HilosGrid extends Grid implements HilosGridInterface
 		        "label" => "ID",
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "like"
+		            "operator" => "="
 		        ],
 		        "styles" => [
 		            "column" => "grid-w-10"
 		        ]
 		    ],
-		    "calibre" => [
+		    "id_user" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "like"
+		            "operator" => "="
 		        ]
 		    ],
-		    "cve_corta_hilo" => [
+		    "textura" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
 		        "filter" => [
 		            "enabled" => true,
-		            "operator" => "like"
+		            "operator" => "="
 		        ]
 		    ],
+		    "color" => [
+		        "search" => [
+		            "enabled" => true
+		        ],
+		        "filter" => [
+		            "enabled" => true,
+		            "operator" => "="
+		        ]
+		    ],
+		    "cve_corta_textura" => [
+		        "search" => [
+		            "enabled" => true
+		        ],
+		        "filter" => [
+		            "enabled" => true,
+		            "operator" => "="
+		        ]
+		    ],
+		    "fecha_alta" => [
+		        "search" => [
+		            "enabled" => true
+		        ],
+		        "filter" => [
+		            "enabled" => true,
+		            "operator" => "="
+		        ]
+		    ]
 		];
     }
 
@@ -81,12 +109,12 @@ class HilosGrid extends Grid implements HilosGridInterface
     public function setRoutes()
     {
         // searching, sorting and filtering
-        $this->setIndexRouteName('hilos.index');
+        $this->setIndexRouteName('texturas.index');
 
         // crud support
-        $this->setCreateRouteName('hilos.create');
-        $this->setViewRouteName('hilos.show');
-        $this->setDeleteRouteName('hilos.destroy');
+        $this->setCreateRouteName('texturas.create');
+        $this->setViewRouteName('texturas.show');
+        $this->setDeleteRouteName('texturas.destroy');
 
         // default route parameter
         $this->setDefaultRouteParameter('id');
@@ -118,40 +146,6 @@ class HilosGrid extends Grid implements HilosGridInterface
         // call `editToolbarButton` to edit a toolbar button
         // call `editRowButton` to edit a row button
         // call `editButtonProperties` to do either of the above. All the edit functions accept the properties as an array
-        $this->editToolbarButton('refresh', [
-            'name' => 'Recargar',
-        ]);
-        $this->editRowButton('view', [
-            'name' => 'Ver',
-        ]);
-        $this->editToolbarButton('create', [
-            'name' => 'Crear',
-        ]);
-        $this->editToolbarButton('export', [
-            'name' => 'Descargar',
-        ]);
-        $this->makeCustomButton([
-            // an icon for the button, as chosen from font-awesome. Defaults to null
-            'icon' => 'fa-edit',
-            // the name of the button. Defaults to Unknown
-            'name' => 'actualizar',
-            // css class for the button. Defaults to `btn btn-default`
-            'class' => '',
-            // function that will be called to determine if the button will be displayed. Defaults to null
-            'renderIf' => function() {return true;}, 
-            // a link for this button. using the function specified will get an already existing route. Otherwise you can use any of
-            // laravel's helper functions to get a url. Defaults to #
-            // it accepts both a string and a callbac. See the scenarios below
-            'url' => function($gridName, $gridItem) {
-                return route('materiales.update', ['id' => $gridItem->id]);
-            },
-            // where to the left or right with respect to other buttons would it be displayed. Higher means it will slide over to the far left, 
-            // and lower means it will slide over to the far right. Its actually a sort run over the collection of buttons, and this argument
-            // passed in the callback as an arg. Defaults to null
-            'position' => 99,
-            // if an action on it would trigger a PJAX action. Defaults to false
-            'pjaxEnabled' => true, 
-        ], 'rows');
     }
 
     /**

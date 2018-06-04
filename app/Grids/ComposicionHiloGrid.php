@@ -5,14 +5,14 @@ namespace App\Grids;
 use Closure;
 use Leantony\Grid\Grid;
 
-class HilosGrid extends Grid implements HilosGridInterface
+class ComposicionHiloGrid extends Grid implements ComposicionHiloGridInterface
 {
     /**
      * The name of the grid
      *
      * @var string
      */
-    protected $name = 'Hilos';
+    protected $name = 'ComposicionHilo';
 
     /**
      * List of buttons to be generated on the grid
@@ -52,7 +52,7 @@ class HilosGrid extends Grid implements HilosGridInterface
 		            "column" => "grid-w-10"
 		        ]
 		    ],
-		    "calibre" => [
+		    "cve_corta_composicion" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
@@ -61,7 +61,7 @@ class HilosGrid extends Grid implements HilosGridInterface
 		            "operator" => "like"
 		        ]
 		    ],
-		    "cve_corta_hilo" => [
+		    "fecha_alta" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
@@ -69,7 +69,7 @@ class HilosGrid extends Grid implements HilosGridInterface
 		            "enabled" => true,
 		            "operator" => "like"
 		        ]
-		    ],
+		    ]
 		];
     }
 
@@ -81,12 +81,12 @@ class HilosGrid extends Grid implements HilosGridInterface
     public function setRoutes()
     {
         // searching, sorting and filtering
-        $this->setIndexRouteName('hilos.index');
+        $this->setIndexRouteName('composicionhilo.index');
 
         // crud support
-        $this->setCreateRouteName('hilos.create');
-        $this->setViewRouteName('hilos.show');
-        $this->setDeleteRouteName('hilos.destroy');
+        $this->setCreateRouteName('composicionhilo.create');
+        $this->setViewRouteName('composicionhilo.show');
+        $this->setDeleteRouteName('composicionhilo.destroy');
 
         // default route parameter
         $this->setDefaultRouteParameter('id');
@@ -143,7 +143,7 @@ class HilosGrid extends Grid implements HilosGridInterface
             // laravel's helper functions to get a url. Defaults to #
             // it accepts both a string and a callbac. See the scenarios below
             'url' => function($gridName, $gridItem) {
-                return route('materiales.update', ['id' => $gridItem->id]);
+                return route('composicionhilo.update', ['id' => $gridItem->id]);
             },
             // where to the left or right with respect to other buttons would it be displayed. Higher means it will slide over to the far left, 
             // and lower means it will slide over to the far right. Its actually a sort run over the collection of buttons, and this argument

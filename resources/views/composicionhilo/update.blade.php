@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['hilos/index', 'Lista de Calibre de Hilos'],
-		['hilos/create/', 'Crear Calibre Hilo']
+		['composicionhilo/index', 'Lista de Composición de Hilos'],
+		['composicionhilo/update/' . $model->id, 'Composición de Hilo: ' . $model->cve_corta_composicion]
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Crear Calibre Hilo</h3>
+		        <h3 class="box-title">Composición de Hilo<b><?= $model->cve_corta_composicion ?></b></h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => 'HilosController@store',
+		                'action' => ['ComposicionHiloController@edit', $model->id],
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,31 +34,19 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="calibre">Calibre</label>
+		                <label for="calibre">Cve Corta Composición</label>
 		                <?=
-		                	Form::text('calibre',
-		                		null,
+		                	Form::text('cve_corta_composicion',
+		                		$model->cve_corta_composicion,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Calibre'
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="calibre">Cve Corta Hilo</label>
-		                <?=
-		                	Form::text('cve_corta_hilo',
-		                		null,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'Cve Corta Hilo'
+		                			'placeholder' => 'Cve Corta Composición'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="box-footer form-group col-md-12">
-		            	<button type="submit" class="btn btn-primary">Crear</button>
+		            	<button type="submit" class="btn btn-primary">Actualizar</button>
 		            </div>
 		        </div>
 	        {!! Form::close() !!}

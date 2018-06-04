@@ -15,21 +15,28 @@ class ComposicionHilo extends Model
 
 	protected $fillable = [
 		'id_user',
-		'id_hilo',
-		'id_material',
-		'porcentaje',
 		'cve_corta_composicion'
+	];
+
+	protected $appends = [
+		'sumaComposicion'
 	];
 
 	public function user(){
 		return $this->hasOne('App\User', 'id', 'id_user');
 	}
 
-	public function hilo(){
-		return $this->hasOne('App\Hilos', 'id', 'id_hilo');
+	public function porcetanjeComposicion(){
+		return $this->hasMany('App\PorcentajeComposicionHilo', 'id_composicion_hilo', 'id');
 	}
 
-	public function material(){
-		return $this->hasOne('App\Materiales', 'id', 'id_material');
+	public function getSumaComposicionAttribute(){
+		$suma = 0;
+		foreach ($this->porcetanjeComposicion as $key => $value) {
+			$suma += $value->porcentaje;
+		}
+		return $suma;
 	}
+
+
 }
