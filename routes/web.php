@@ -257,3 +257,47 @@ Route::get('composicionhilo/destroyporcentaje/{id}', [
 	'as' => 'composicionhilo.destroyPorcentaje'
 ]);
 
+/**
+ * Rutas Texturas
+ */
+Route::get('texturas/index', [
+	'uses' => 'TexturasController@index',
+	'middleware' => 'auth',
+	'as' => 'texturas.index'
+]);
+
+Route::get('texturas/create', [
+	'uses' => 'TexturasController@create',
+	'middleware' => 'auth',
+	'as' => 'texturas.create'
+]);
+
+Route::post('texturas/store', [
+	'uses' => 'TexturasController@store',
+	'middleware' => 'auth',
+	'as' => 'texturas.store'
+]);
+
+Route::get('texturas/show/{id}', [
+	'uses' => 'TexturasController@show',
+	'middleware' => 'auth',
+	'as' => 'texturas.show'
+]);
+
+Route::get('texturas/destroy/{id}', [
+	'uses' => 'TexturasController@destroy',
+	'middleware' => 'auth',
+	'as' => 'texturas.destroy'
+]);
+
+Route::get('texturas/update/{id}', [
+	'uses' => 'TexturasController@update',
+	'middleware' => 'auth',
+	'as' => 'texturas.update'
+]);
+
+Route::post('texturas/edit/{id}', [
+	'uses' => 'TexturasController@edit',
+	'middleware' => 'auth',
+	'as' => 'texturas.edit'
+]);

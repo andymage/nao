@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Grids\TexturasGrid;
 use App\Texturas;
-use App\Http\Requests\TexturasRequest;
+use App\Http\Requests\TexturaRequest;
 use App\Helper;
-use App\ComposicionHilo;
 
 class TexturasController extends Controller
 {
@@ -26,7 +25,7 @@ class TexturasController extends Controller
     	return view('texturas.create');
     }
 
-    public function store(TexturasRequest $request){
+    public function store(TexturaRequest $request){
     	$data = $request->all();
     	$data['id_user'] = $request->user()->id;
     	$model = Texturas::create($data);
@@ -48,10 +47,11 @@ class TexturasController extends Controller
     	]);
     }
 
-    public function edit($id, TexturasRequest $request){
+    public function edit($id, TexturaRequest $request){
     	$model = $this->findModel($id);
-        $model->calibre = $request->get('calibre');
-        $model->cve_corta_hilo = $request->get('cve_corta_hilo');
+        $model->textura = $request->get('textura');
+        $model->color = $request->get('color');
+        $model->cve_corta_textura = $request->get('cve_corta_textura');
     	if ($model->save()) {
     		flash('¡Actualizado Correctamente!')->success();
         	return redirect('texturas/show/' . $model->id);

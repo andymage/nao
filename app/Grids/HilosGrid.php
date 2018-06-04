@@ -143,7 +143,7 @@ class HilosGrid extends Grid implements HilosGridInterface
             // laravel's helper functions to get a url. Defaults to #
             // it accepts both a string and a callbac. See the scenarios below
             'url' => function($gridName, $gridItem) {
-                return route('materiales.update', ['id' => $gridItem->id]);
+                return route('hilos.update', ['id' => $gridItem->id]);
             },
             // where to the left or right with respect to other buttons would it be displayed. Higher means it will slide over to the far left, 
             // and lower means it will slide over to the far right. Its actually a sort run over the collection of buttons, and this argument

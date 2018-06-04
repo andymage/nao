@@ -13,7 +13,7 @@
             <li><a href="<?= url('materiales/index') ?>"><i class="fa fa-circle-o"></i> Lista Materiales</a></li>
             <li><a href="<?= url('hilos/index') ?>"><i class="fa fa-circle-o"></i> Lista Calibre Hilo</a></li>
             <li><a href="<?= url('composicionhilo/index') ?>"><i class="fa fa-circle-o"></i> Lista Composición Hilo</a></li>
-            <li><a href="<?= url('hilos/index') ?>"><i class="fa fa-circle-o"></i> Lista Textura Color</a></li>
+            <li><a href="<?= url('texturas/index') ?>"><i class="fa fa-circle-o"></i> Lista Textura Color</a></li>
         </ul>
     </li>
     <li class="treeview">
