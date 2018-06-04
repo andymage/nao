@@ -50,7 +50,7 @@ class CreateClavesHilosTable extends Migration
                 'my_id_user_claves_hilos',
                 'my_id_hilo_claves_hilos',
                 'my_id_composicion_hilo_claves_hilos',
-                ' ',
+                'my_id_textura_claves_hilos',
             ]);
         });
         Schema::dropIfExists('claves_hilos');
