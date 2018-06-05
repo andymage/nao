@@ -301,3 +301,48 @@ Route::post('texturas/edit/{id}', [
 	'middleware' => 'auth',
 	'as' => 'texturas.edit'
 ]);
+
+/**
+ * Rutas Claves Hilos
+ */
+Route::get('claveshilos/index', [
+	'uses' => 'ClavesHilosController@index',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.index'
+]);
+
+Route::get('claveshilos/create', [
+	'uses' => 'ClavesHilosController@create',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.create'
+]);
+
+Route::post('claveshilos/store', [
+	'uses' => 'ClavesHilosController@store',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.store'
+]);
+
+Route::get('claveshilos/show/{id}', [
+	'uses' => 'ClavesHilosController@show',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.show'
+]);
+
+Route::get('claveshilos/destroy/{id}', [
+	'uses' => 'ClavesHilosController@destroy',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.destroy'
+]);
+
+Route::get('claveshilos/update/{id}', [
+	'uses' => 'ClavesHilosController@update',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.update'
+]);
+
+Route::post('claveshilos/edit/{id}', [
+	'uses' => 'ClavesHilosController@edit',
+	'middleware' => 'auth',
+	'as' => 'claveshilos.edit'
+]);
