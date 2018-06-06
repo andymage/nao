@@ -346,3 +346,93 @@ Route::post('claveshilos/edit/{id}', [
 	'middleware' => 'auth',
 	'as' => 'claveshilos.edit'
 ]);
+
+/**
+ * Rutas Tejidos
+ */
+Route::get('tejidos/index', [
+	'uses' => 'TejidosController@index',
+	'middleware' => 'auth',
+	'as' => 'tejidos.index'
+]);
+
+Route::get('tejidos/create', [
+	'uses' => 'TejidosController@create',
+	'middleware' => 'auth',
+	'as' => 'tejidos.create'
+]);
+
+Route::post('tejidos/store', [
+	'uses' => 'TejidosController@store',
+	'middleware' => 'auth',
+	'as' => 'tejidos.store'
+]);
+
+Route::get('tejidos/show/{id}', [
+	'uses' => 'TejidosController@show',
+	'middleware' => 'auth',
+	'as' => 'tejidos.show'
+]);
+
+Route::get('tejidos/destroy/{id}', [
+	'uses' => 'TejidosController@destroy',
+	'middleware' => 'auth',
+	'as' => 'tejidos.destroy'
+]);
+
+Route::get('tejidos/update/{id}', [
+	'uses' => 'TejidosController@update',
+	'middleware' => 'auth',
+	'as' => 'tejidos.update'
+]);
+
+Route::post('tejidos/edit/{id}', [
+	'uses' => 'TejidosController@edit',
+	'middleware' => 'auth',
+	'as' => 'tejidos.edit'
+]);
+
+/**
+ * Rutas Telas Clientes
+ */
+Route::get('telascliente/index', [
+	'uses' => 'TelasClienteController@index',
+	'middleware' => 'auth',
+	'as' => 'telascliente.index'
+]);
+
+Route::get('telascliente/create', [
+	'uses' => 'TelasClienteController@create',
+	'middleware' => 'auth',
+	'as' => 'telascliente.create'
+]);
+
+Route::post('telascliente/store', [
+	'uses' => 'TelasClienteController@store',
+	'middleware' => 'auth',
+	'as' => 'telascliente.store'
+]);
+
+Route::get('telascliente/show/{id}', [
+	'uses' => 'TelasClienteController@show',
+	'middleware' => 'auth',
+	'as' => 'telascliente.show'
+]);
+
+Route::get('telascliente/destroy/{id}', [
+	'uses' => 'TelasClienteController@destroy',
+	'middleware' => 'auth',
+	'as' => 'telascliente.destroy'
+]);
+
+Route::get('telascliente/update/{id}', [
+	'uses' => 'TelasClienteController@update',
+	'middleware' => 'auth',
+	'as' => 'telascliente.update'
+]);
+
+Route::post('telascliente/edit/{id}', [
+	'uses' => 'TelasClienteController@edit',
+	'middleware' => 'auth',
+	'as' => 'telascliente.edit'
+]);

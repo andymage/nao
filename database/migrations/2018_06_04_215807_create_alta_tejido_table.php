@@ -22,10 +22,8 @@ class CreateAltaTejidoTable extends Migration
             $table->string('numero_consecutivo')->nullable();
             $table->dateTime('fecha_alta');
             $table->dateTime('fecha_actualizacion');
-
             $table->index('id_user', 'my_id_user_tejidos');
             $table->foreign('id_user')->references('id')->on('users');
-
         });
     }
 
@@ -36,6 +34,14 @@ class CreateAltaTejidoTable extends Migration
      */
     public function down()
     {
+        Schema::table('claves_hilos', function (Blueprint $table) {
+            $table->dropForeign([
+                'id_user',
+            ]);
+            $table->dropIndex([
+                'my_id_user_tejidos',
+            ]);
+        });
         Schema::dropIfExists('tejidos');
     }
 }
