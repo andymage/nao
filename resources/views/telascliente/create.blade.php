@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['tejidos/index', 'Lista de Tejidos'],
-		['tejidos/create/', 'Crear Tejido']
+		['telascliente/index', 'Lista de Telas Cliente'],
+		['telascliente/create/', 'Crear tela según necesidades del cliente']
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Crear Tejido</h3>
+		        <h3 class="box-title">Crear tela según necesidades del cliente</h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => 'TejidosController@store',
+		                'action' => 'TelasClienteController@store',
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,37 +34,70 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="tejido">Tejido</label>
+		                <label for="tejido">Tipo de Tejido</label>
 		                <?=
-		                	Form::text('tejido',
+		                	Form::select('id_tejido', $tejido,
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Tejido'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="modelo">Modelo</label>
+		                <label for="modelo">Composición</label>
 		            	<?=
-		                	Form::text('modelo',
+		                	Form::select('id_composicion_hilo', $composicion,
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Modelo'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="cve_tejido">Cve Tejido</label>
+		                <label for="cve_tejido">Tipo de Textura</label>
 		            	<?=
-		                	Form::text('cve_tejido',
+		                	Form::select('id_textura', $textura,
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Cve Tejido'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Diámetro</label>
+		            	<?=
+		                	Form::text('diametro',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'SM'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Gramajes en Tela</label>
+		            	<?=
+		                	Form::text('gramaje',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'g/m²'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Descripción</label>
+		            	<?=
+		                	Form::text('descripcion',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Descripción'
 		                		]
 		                	);
 		                ?>

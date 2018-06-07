@@ -6,8 +6,8 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['tejidos/index', 'Lista de Tejidos'],
-		['tejidos/show/' . $model->id, 'Tejido: ' . $model->tejido]
+    ['telascliente/index', 'Lista de Telas Cliente'],
+    ['telascliente/create/', 'Modelo Tela: ' . $model->modeloTela]
 	]) 
 ?>
 
@@ -15,7 +15,7 @@
 	<div class="col-md-12">
 		<div class="box">
             <div class="box-header box-success with-border">
-              <h3 class="box-title">Tejido <b><?= $model->tejido ?></b></h3>
+              <h3 class="box-title">Modelo Tela: <b><?= $model->modeloTela ?></b></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -25,25 +25,33 @@
                   			<td width="25%"><b>Id</b></td>
                   			<td width="75%"><?= $model->id ?></td>
                 		</tr>
+                    <tr>
+                        <td width="25%"><b>Tipo de de Tejido</b></td>
+                        <td width="75%"><?= $model->tejido->cveCorta ?></td>
+                    </tr>
                 		<tr>
-                  			<td width="25%"><b>Tejido</b></td>
-                  			<td width="75%"><?= $model->tejido ?></td>
+                  			<td width="25%"><b>Composición</b></td>
+                  			<td width="75%"><?= $model->composicionHilo->cve_corta_composicion ?></td>
                 		</tr>
                 		<tr>
-                  			<td width="25%"><b>Modelo</b></td>
-                  			<td width="75%"><?= $model->modelo ?></td>
+                  			<td width="25%"><b>Tipo de Textura</b></td>
+                  			<td width="75%"><?= $model->textura->cve_corta_textura ?></td>
                 		</tr>
                 		<tr>
-                  			<td width="25%"><b>Cve Tejido</b></td>
-                  			<td width="75%"><?= $model->cve_tejido ?></td>
+                  			<td width="25%"><b>Diámetro</b></td>
+                  			<td width="75%"><?= $model->diametro ?></td>
                 		</tr>
                 		<tr>
-                  			<td width="25%"><b>Número Consecutivo</b></td>
-                  			<td width="75%"><?= $model->numero_consecutivo ?></td>
+                  			<td width="25%"><b>Gramajes en Tela</b></td>
+                  			<td width="75%"><?= $model->gramaje ?></td>
                 		</tr>
                         <tr>
-                            <td width="25%"><b>Cve Corta</b></td>
-                            <td width="75%"><?= $model->cveCorta ?></td>
+                            <td width="25%"><b>Descripción</b></td>
+                            <td width="75%"><?= $model->descripcion ?></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><b>Modelo Tela</b></td>
+                            <td width="75%"><?= $model->modeloTela ?></td>
                         </tr>
                 		<tr>
                   			<td width="25%"><b>Registro el usuario</b></td>

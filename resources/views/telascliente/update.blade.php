@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['tejidos/index', 'Lista de Tejidos'],
-		['tejidos/update/' . $model->id, 'Tejidos: ' . $model->tejido]
+		['telascliente/index', 'Lista de Telas Cliente'],
+		['telascliente/create/', 'Actualizar Modelo Tela: ' . $model->modeloTela]
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Actualizar Tejido: <b><?= $model->tejido ?></b></h3>
+		        <h3 class="box-title">Actualizar Modelo Tela: <?= $model->modeloTela ?></h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => ['TejidosController@edit', $model->id],
+		                'action' => ['TelasClienteController@store', $model->id],
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,51 +34,76 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="tejido">Tejido</label>
+		                <label for="tejido">Tipo de Tejido</label>
 		                <?=
-		                	Form::text('tejido',
-		                		$model->tejido,
+		                	Form::select('id_tejido', $tejido,
+		                		$model->id_tejido,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Tejido'
-		                		]
-		                	);
-		                ?>
-		                <?=
-		                	Form::text('id',
-		                		$model->id,
-		                		[
-		                			'class' => 'form-control hidden',
 		                		]
 		                	);
 		                ?>
 		            </div>
-		           	<div class="form-group col-md-6">
-		           	    <label for="modelo">Modelo</label>
-		           		<?=
-		           	    	Form::text('modelo',
-		           	    		$model->modelo,
-		           	    		[
-		           	    			'class' => 'form-control',
-		           	    			'placeholder' => 'Modelo'
-		           	    		]
-		           	    	);
-		           	    ?>
-		           	</div>
-		           	<div class="form-group col-md-6">
-		           	    <label for="cve_tejido">Cve Tejido</label>
-		           		<?=
-		           	    	Form::text('cve_tejido',
-		           	    		$model->cve_tejido,
-		           	    		[
-		           	    			'class' => 'form-control',
-		           	    			'placeholder' => 'Cve Tejido'
-		           	    		]
-		           	    	);
-		           	    ?>
-		           	</div>
+		            <div class="form-group col-md-6">
+		                <label for="modelo">Composición</label>
+		            	<?=
+		                	Form::select('id_composicion_hilo', $composicion,
+		                		$model->id_composicion_hilo,
+		                		[
+		                			'class' => 'form-control',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Tipo de Textura</label>
+		            	<?=
+		                	Form::select('id_textura', $textura,
+		                		$model->id_textura,
+		                		[
+		                			'class' => 'form-control',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Diámetro</label>
+		            	<?=
+		                	Form::text('diametro',
+		                		$model->diametro,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'SM'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Gramajes en Tela</label>
+		            	<?=
+		                	Form::text('gramaje',
+		                		$model->gramaje,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'g/m²'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="cve_tejido">Descripción</label>
+		            	<?=
+		                	Form::text('descripcion',
+		                		$model->descripcion,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Descripción'
+		                		]
+		                	);
+		                ?>
+		            </div>
 		            <div class="box-footer form-group col-md-12">
-		            	<button type="submit" class="btn btn-primary">Actualizar</button>
+		            	<button type="submit" class="btn btn-primary">Crear</button>
 		            </div>
 		        </div>
 	        {!! Form::close() !!}

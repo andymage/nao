@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Grids\TelasClienteGrid;
 use App\TelasCliente;
+use App\ComposicionHilo;
+use App\Tejidos;
+use App\Texturas;
+use App\Helper;
 use App\Http\Requests\TelasClienteRequest;
 use App\Http\Requests\TelasClienteUpdateRequest;
 
@@ -22,7 +26,21 @@ class TelasClienteController extends Controller
     }
 
     public function create(){
-    	return view('telascliente.create');
+        $tejidos = Tejidos::get();
+        $tejido = [];
+        foreach ($tejidos as $key => $value) {
+            $tejido = [
+                $value->id => $value->cveCorta
+            ];
+        }
+        $tejido = Helper::arrayHelperSelect($tejido);
+        $composiciones = Helper::arrayHelperSelect(ComposicionHilo::pluck('cve_corta_composicion', 'id')->toArray());
+        $textura = Helper::arrayHelperSelect(Texturas::pluck('cve_corta_textura', 'id')->toArray());
+    	return view('telascliente.create',[
+            'tejido' => $tejido,
+            'composicion' => $composiciones,
+            'textura' => $textura
+        ]);
     }
 
     public function store(TelasClienteRequest $request){
@@ -42,17 +60,32 @@ class TelasClienteController extends Controller
 
     public function update($id){
     	$model = $this->findModel($id);
+        $tejidos = Tejidos::get();
+        $tejido = [];
+        foreach ($tejidos as $key => $value) {
+            $tejido = [
+                $value->id => $value->cveCorta
+            ];
+        }
+        $tejido = Helper::arrayHelperSelect($tejido);
+        $composiciones = Helper::arrayHelperSelect(ComposicionHilo::pluck('cve_corta_composicion', 'id')->toArray());
+        $textura = Helper::arrayHelperSelect(Texturas::pluck('cve_corta_textura', 'id')->toArray());
     	return view('telascliente.update',[
-    		'model' => $model
+    		'model' => $model,
+            'tejido' => $tejido,
+            'composicion' => $composiciones,
+            'textura' => $textura
     	]);
     }
 
     public function edit($id, TelasClienteRequest $request){
     	$model = $this->findModel($id);
-    	$model->nombre = $request->get('nombre');
-    	$model->direccion = $request->get('direccion');
-    	$model->email = $request->get('email');
-    	$model->clave_corta = $request->get('clave_corta');
+    	$model->id_tejido = $request->get('id_tejido');
+        $model->id_composicion_hilo = $request->get('id_composicion_hilo');
+        $model->id_textura = $request->get('id_textura');
+        $model->diametro = $request->get('diametro');
+        $model->gramaje = $request->get('gramaje');
+        $model->descripcion = $request->get('descripcion');
     	if ($model->save()) {
     		flash('¡Actualizado Correctamente!')->success();
         	return redirect('telascliente/show/' . $model->id);

@@ -37,6 +37,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="<?= url('clientes/index') ?>"><i class="fa fa-circle-o"></i> Lista Clientes</a></li>
+            <li><a href="<?= url('telascliente/index') ?>"><i class="fa fa-circle-o"></i> Lista Telas Cliente</a></li>
         </ul>
     </li>
 </ul>

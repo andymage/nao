@@ -23,6 +23,10 @@ class TelasCliente extends Model
 		'descripcion',
 	];
 
+	protected $appends = [
+		'modeloTela'
+	];
+
 	public function user(){
 		return $this->hasOne('App\User', 'id', 'id_user');
 	}
@@ -37,5 +41,11 @@ class TelasCliente extends Model
 
 	public function textura(){
 		return $this->hasOne('App\Texturas', 'id', 'id_textura');
+	}
+
+	public function getModeloTelaAttribute(){
+		$gramaje = str_replace('.', '', $this->gramaje);
+		$gramaje = substr($gramaje, 0, 2);
+		return $this->tejido->cveCorta . '-' . $this->composicionHilo->cve_corta_composicion . '-' . $this->textura->cve_corta_textura . '-' . $gramaje;
 	}
 }
