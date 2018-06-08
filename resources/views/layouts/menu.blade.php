@@ -4,7 +4,7 @@
     <li class="header">Menú Principal</li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-gears"></i> <span>Hilos</span>
+            <i class="fa fa-arrows-alt"></i> <span>Hilos</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -38,6 +38,17 @@
         <ul class="treeview-menu">
             <li><a href="<?= url('clientes/index') ?>"><i class="fa fa-circle-o"></i> Lista Clientes</a></li>
             <li><a href="<?= url('telascliente/index') ?>"><i class="fa fa-circle-o"></i> Lista Telas Cliente</a></li>
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-gears"></i> <span>Máquinas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="<?= url('maquinascirculares/index') ?>"><i class="fa fa-circle-o"></i> Lista Máquinas Circulares</a></li>
         </ul>
     </li>
 </ul>

@@ -48,10 +48,19 @@ class MaquinasCircularesGrid extends Grid implements MaquinasCircularesGridInter
 		            "enabled" => true,
 		            "operator" => "="
 		        ],
-		        "styles" => [
-		            "column" => "grid-w-10"
-		        ]
+                "styles" => [
+                    "column" => "col-md-1"
+                ]
 		    ],
+            "maquina" => [
+                "search" => [
+                    "enabled" => true
+                ],
+                "filter" => [
+                    "enabled" => true,
+                    "operator" => "="
+                ]
+            ],
 		    "agujas" => [
 		        "search" => [
 		            "enabled" => true
@@ -59,7 +68,10 @@ class MaquinasCircularesGrid extends Grid implements MaquinasCircularesGridInter
 		        "filter" => [
 		            "enabled" => true,
 		            "operator" => "="
-		        ]
+		        ],
+                "styles" => [
+                    "column" => "col-md-1"
+                ]
 		    ],
 		    "alimentadores" => [
 		        "search" => [
@@ -68,7 +80,10 @@ class MaquinasCircularesGrid extends Grid implements MaquinasCircularesGridInter
 		        "filter" => [
 		            "enabled" => true,
 		            "operator" => "="
-		        ]
+		        ],
+                "styles" => [
+                    "column" => "col-md-1"
+                ]
 		    ],
 		    "rpm" => [
 		        "search" => [
@@ -77,18 +92,12 @@ class MaquinasCircularesGrid extends Grid implements MaquinasCircularesGridInter
 		        "filter" => [
 		            "enabled" => true,
 		            "operator" => "="
-		        ]
+		        ],
+                "styles" => [
+                    "column" => "col-md-1"
+                ]
 		    ],
 		    "galga" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
-		    ],
-		    "maquina" => [
 		        "search" => [
 		            "enabled" => true
 		        ],

@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['maquinascirculares/index', 'Lista de Máquinas Circulares'],
-		['maquinascirculares/update/' . $model->id, 'Máquina Circular: ' . $model->constanteMaquina]
+		['clientes/index', 'Lista de Clientes'],
+		['clientes/update/' . $model->id, 'Cliente: ' . $model->nombre]
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Actualizar Máquina Circular<b><?= $model->constanteMaquina ?></b></h3>
+		        <h3 class="box-title">Actualizar Cliente: <b><?= $model->nombre ?></b></h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => ['MaquinasCircularesController@edit', $model->id],
+		                'action' => ['ClientesController@edit', $model->id],
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,61 +34,57 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="agujas">Agujas</label>
+		                <label for="nombre">Nombre Cliente</label>
 		                <?=
-		                	Form::text('agujas',
-		                		$model->agujas,
+		                	Form::text('nombre',
+		                		$model->nombre,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Agujas'
+		                			'placeholder' => 'Nombre Cliente'
+		                		]
+		                	);
+		                ?>
+		                <?=
+		                	Form::text('id',
+		                		$model->id,
+		                		[
+		                			'class' => 'form-control hidden',
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="alimentadores">Alimentadores</label>
-		                <?=
-		                	Form::text('alimentadores',
-		                		$model->alimentadores,
+		                <label for="clave_corta">Clave Corta</label>
+		            	<?=
+		                	Form::text('clave_corta',
+		                		$model->clave_corta,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Alimentadores'
+		                			'placeholder' => 'Clave Corta'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="rpm">RPM</label>
-		                <?=
-		                	Form::text('rpm',
-		                		$model->rpm,
+		                <label for="direccion">Dirección</label>
+		            	<?=
+		                	Form::text('direccion',
+		                		$model->direccion,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'RPM'
+		                			'placeholder' => 'Direccion'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="galga">Galga</label>
-		                <?=
-		                	Form::text('galga',
-		                		$model->galga,
+		                <label for="direccion">E-mail</label>
+		            	<?=
+		                	Form::text('email',
+		                		$model->email,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Galga'
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="maquina">Máquina</label>
-		                <?=
-		                	Form::text('maquina',
-		                		$model->maquina,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'Máquina'
+		                			'placeholder' => 'E-mail'
 		                		]
 		                	);
 		                ?>

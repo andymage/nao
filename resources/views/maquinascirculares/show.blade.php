@@ -7,7 +7,7 @@
 <?= 
 	Helper::breadCrumbs([
     ['maquinascirculares/index', 'Lista de Máquinas Circulares'],
-		['maquinascirculares/show/' . $model->id, 'Máquina Circular: ' . $model->constanteMaquina]
+		['maquinascirculares/show/' . $model->id, 'Máquina Circular: ' . $model->maquina]
 	]) 
 ?>
 
@@ -15,7 +15,7 @@
 	<div class="col-md-12">
 		<div class="box">
             <div class="box-header box-success with-border">
-              <h3 class="box-title">Calibre de Hilo <b><?= $model->cve_corta_hilo ?></b></h3>
+              <h3 class="box-title">Máquina Circular <b><?= $model->maquina ?></b></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -23,20 +23,32 @@
                 	<tbody>
                 		<tr>
                   			<td width="25%"><b>Id</b></td>
-                  			<td width="75%"><?= $model->id ?></td>
-                		</tr>
-                		<tr>
-                  			<td width="25%"><b>Calibre</b></td>
-                  			<td width="75%"><?= $model->calibre ?></td>
-                		</tr>
-                    <tr>
-                        <td width="25%"><b>Cve Corta Hilo</b></td>
-                        <td width="75%"><?= $model->cve_corta_hilo ?></td>
+                        <td width="75%"><?= $model->id ?></td>
                     </tr>
-                		<tr>
-                  			<td width="25%"><b>Registro el usuario</b></td>
-                  			<td width="75%"><?= $model->user->name ?></td>
-                		</tr>
+                    <tr>
+                        <td width="25%"><b>Máquina</b></td>
+                        <td width="75%"><?= $model->maquina ?></td>
+                    </tr>
+                    <tr>
+                        <td width="25%"><b>Constante Máquina</b></td>
+                        <td width="75%"><?= $model->constanteMaquina ?></td>
+                    </tr>
+                    <tr>
+                        <td width="25%"><b>Agujas</b></td>
+                        <td width="75%"><?= $model->agujas ?></td>
+                    </tr>
+                    <tr>
+                        <td width="25%"><b>Alimentadores</b></td>
+                        <td width="75%"><?= $model->alimentadores ?></td>
+                    </tr>
+                    <tr>
+                        <td width="25%"><b>RPM</b></td>
+                        <td width="75%"><?= $model->rpm ?></td>
+                    </tr>
+                    <tr>
+                        <td width="25%"><b>Galga</b></td>
+                        <td width="75%"><?= $model->galga ?></td>
+                    </tr>
               		</tbody>
               	</table>
             </div>
