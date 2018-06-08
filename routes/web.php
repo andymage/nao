@@ -436,3 +436,48 @@ Route::post('telascliente/edit/{id}', [
 	'middleware' => 'auth',
 	'as' => 'telascliente.edit'
 ]);
+
+/**
+ * Rutas Máquinas Circulares
+ */
+Route::get('maquinascirculares/index', [
+	'uses' => 'MaquinasCircularesController@index',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.index'
+]);
+
+Route::get('maquinascirculares/create', [
+	'uses' => 'MaquinasCircularesController@create',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.create'
+]);
+
+Route::post('maquinascirculares/store', [
+	'uses' => 'MaquinasCircularesController@store',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.store'
+]);
+
+Route::get('maquinascirculares/show/{id}', [
+	'uses' => 'MaquinasCircularesController@show',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.show'
+]);
+
+Route::get('maquinascirculares/destroy/{id}', [
+	'uses' => 'MaquinasCircularesController@destroy',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.destroy'
+]);
+
+Route::get('maquinascirculares/update/{id}', [
+	'uses' => 'MaquinasCircularesController@update',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.update'
+]);
+
+Route::post('maquinascirculares/edit/{id}', [
+	'uses' => 'MaquinasCircularesController@edit',
+	'middleware' => 'auth',
+	'as' => 'maquinascirculares.edit'
+]);
