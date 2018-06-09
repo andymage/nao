@@ -481,3 +481,54 @@ Route::post('maquinascirculares/edit/{id}', [
 	'middleware' => 'auth',
 	'as' => 'maquinascirculares.edit'
 ]);
+
+/**
+ * Rutas Crudos
+ */
+Route::get('crudos/index', [
+	'uses' => 'CrudosController@index',
+	'middleware' => 'auth',
+	'as' => 'crudos.index'
+]);
+
+Route::get('crudos/create', [
+	'uses' => 'CrudosController@create',
+	'middleware' => 'auth',
+	'as' => 'crudos.create'
+]);
+
+Route::post('crudos/store', [
+	'uses' => 'CrudosController@store',
+	'middleware' => 'auth',
+	'as' => 'crudos.store'
+]);
+
+Route::get('crudos/show/{id}', [
+	'uses' => 'CrudosController@show',
+	'middleware' => 'auth',
+	'as' => 'crudos.show'
+]);
+
+Route::get('crudos/destroy/{id}', [
+	'uses' => 'CrudosController@destroy',
+	'middleware' => 'auth',
+	'as' => 'crudos.destroy'
+]);
+
+Route::get('crudos/update/{id}', [
+	'uses' => 'CrudosController@update',
+	'middleware' => 'auth',
+	'as' => 'crudos.update'
+]);
+
+Route::post('crudos/edit/{id}', [
+	'uses' => 'CrudosController@edit',
+	'middleware' => 'auth',
+	'as' => 'crudos.edit'
+]);
+
+Route::post('crudos/datos', [
+	'uses' => 'CrudosController@datos',
+	'middleware' => 'auth',
+	'as' => 'crudos.datos'
+]);

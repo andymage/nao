@@ -15,6 +15,7 @@
             <li><a href="<?= url('composicionhilo/index') ?>"><i class="fa fa-circle-o"></i> Lista Composición Hilo</a></li>
             <li><a href="<?= url('texturas/index') ?>"><i class="fa fa-circle-o"></i> Lista Textura Color</a></li>
             <li><a href="<?= url('tejidos/index') ?>"><i class="fa fa-circle-o"></i> Lista de Tejidos</a></li>
+            <li><a href="<?= url('claveshilos/index') ?>"><i class="fa fa-circle-o"></i> Lista de Claves Hilos</a></li>
         </ul>
     </li>
     <li class="treeview">

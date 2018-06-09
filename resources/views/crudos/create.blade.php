@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['clientes/index', 'Lista de Clientes'],
-		['clientes/create/', 'Crear Cliente']
+		['crudos/index', 'Lista de Fichas Técnicas Crudos'],
+		['crudos/create/', 'Crear Ficha Técnica Crudo']
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Crear Cliente</h3>
+		        <h3 class="box-title">Crear Ficha Técnica Crudo</h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => 'ClientesController@store',
+		                'action' => 'CrudosController@store',
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -34,49 +34,127 @@
 	            @endif
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
-		                <label for="nombre">Nombre Cliente</label>
+		                <label for="nombre">Cve Corta Libre</label>
 		                <?=
-		                	Form::text('nombre',
+		                	Form::select('id_clave_hilo',$clave,
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Nombre Cliente'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="clave_corta">Clave Corta</label>
+		                <label for="clave_corta">Agujas</label>
 		            	<?=
-		                	Form::text('clave_corta',
+		                	Form::text('agujas',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Clave Corta'
+		                			'placeholder' => 'Agujas',
+		                			'id' => 'agujas',
+		                			'onchange' => 'maquinas(this.value)'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="direccion">Dirección</label>
+		                <label for="direccion">Máquina</label>
 		            	<?=
-		                	Form::text('direccion',
+		                	Form::select('id_maquina_circular',[NULL => 'Seleccione'],
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'Direccion'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
-		                <label for="direccion">E-mail</label>
+		                <label for="direccion">Galga</label>
 		            	<?=
-		                	Form::text('email',
+		                	Form::text('galga',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'placeholder' => 'E-mail'
+		                			'placeholder' => 'Galga',
+		                			'readonly' => 'readonly',
+		                			'id' => 'galga'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="direccion">Gramaje en Crudo</label>
+		            	<?=
+		                	Form::text('gramaje',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Gramaje en Crudo',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="direccion">Diámetro Acabado/Crudo</label>
+		            	<?=
+		                	Form::text('diametrogramaje',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Diámetro Acabado/Crudo',
+		                			'readonly' => 'readonly',
+		                			'id' => 'diametrogramaje'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="direccion">L.M.</label>
+		            	<?=
+		                	Form::text('lm',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'L.M.',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="direccion">DRAW</label>
+		            	<?=
+		                	Form::text('draw',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'DRAW',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="direccion">Velocidad por kgs de tejido</label>
+		            	<?=
+		                	Form::text('velocidad',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Velocidad por kgs de tejido',
+		                			'readonly' => 'readonly',
+		                			'id' => 'velocidad'
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="direccion">Kgs de por rollos</label>
+		            	<?=
+		                	Form::text('kg_rollo',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Kgs de por rollos',
 		                		]
 		                	);
 		                ?>
@@ -88,4 +166,22 @@
 	        {!! Form::close() !!}
 		</div>
 	</div>
-@endsection
+@stop
+
+@section('javascript')
+	<script type="text/javascript">
+		function maquinas(valor){
+			$.ajax({
+                url: "<?= url('crudos/datos') ?>",
+                type: "post",
+                data: { "_token": "{{ csrf_token() }}",
+                    'id': valor,
+                },
+                success: function(data){
+                    $('#nombre_obligado').text(data.nombre)
+                    $('#id_obligado_modal').val(data.id);
+                }
+            })
+		}
+	</script>
+@stop

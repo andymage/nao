@@ -15,13 +15,23 @@ class Crudos extends Model
 
 	protected $fillable = [
 		'id_user',
-		'nombre',
-		'clave_corta',
-		'direccion',
-		'email',
+		'id_clave_hilo',
+		'id_maquina_circular',
+		'gramaje',
+		'lm',
+		'draw',
+		'kg_rollo',
 	];
 
 	public function user(){
 		return $this->hasOne('App\User', 'id', 'id_user');
+	}
+
+	public function claveHilo(){
+		return $this->hasOne('App\ClavesHilos', 'id', 'id_clave_hilo');
+	}
+
+	public function maquinaCircular(){
+		return $this->hasOne('App\MaquinasCirculares', 'id', 'id_maquina_circular');
 	}
 }
