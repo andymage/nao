@@ -14,7 +14,26 @@ use App\MaquinasCirculares;
 class CrudosController extends Controller
 {
     public function index(Request $request){
-    	$model = Crudos::getQuery();
+        $array = Helper::getQuery($request->all(), [
+            'id' => 'crudos.id',
+            'maquina' => 'maquinas_circulares.maquina',
+            'agujas' => 'maquinas_circulares.agujas',
+            'gramaje' => 'crudos.gramaje',
+            'lm' => 'crudos.lm',
+            'draw' => 'crudos.draw',
+            'kg_rollo' => 'crudos.kg_rollo',
+        ]);
+    	$model = Crudos::select([
+                'crudos.id as id',
+                'maquinas_circulares.maquina as maquina',
+                'maquinas_circulares.agujas as agujas',
+                'crudos.gramaje as gramaje',
+                'crudos.lm as lm',
+                'crudos.draw as draw',
+                'crudos.kg_rollo as kg_rollo',
+            ])
+            ->join('maquinas_circulares', 'maquinas_circulares.id', '=', 'crudos.id_maquina_circular')
+            ->getQuery();
     	$grid = (new CrudosGrid())
             ->create([
                 'query' => $model,
@@ -53,17 +72,26 @@ class CrudosController extends Controller
 
     public function update($id){
     	$model = $this->findModel($id);
+        $claveshilos = ClavesHilos::get();
+        $clave = [];
+        foreach ($claveshilos as $key => $value) {
+            $clave[$value->id] = $value->cveCortaLibre;
+        }
+        $clave = Helper::arrayHelperSelect($clave);
     	return view('crudos.update',[
-    		'model' => $model
+    		'model' => $model,
+            'clave' => $clave
     	]);
     }
 
-    public function edit($id, CrudosUpdateRequest $request){
+    public function edit($id, CrudosRequest $request){
     	$model = $this->findModel($id);
-    	$model->nombre = $request->get('nombre');
-    	$model->direccion = $request->get('direccion');
-    	$model->email = $request->get('email');
-    	$model->clave_corta = $request->get('clave_corta');
+    	$model->id_clave_hilo = $request->get('id_clave_hilo');
+        $model->id_maquina_circular = $request->get('id_maquina_circular');
+        $model->gramaje = $request->get('gramaje');
+        $model->lm = $request->get('lm');
+        $model->draw = $request->get('draw');
+        $model->kg_rollo = $request->get('kg_rollo');
     	if ($model->save()) {
     		flash('¡Actualizado Correctamente!')->success();
         	return redirect('crudos/show/' . $model->id);
@@ -72,12 +100,23 @@ class CrudosController extends Controller
         return redirect('crudos/show/' . $model->id);
     }
 
-    public function datos(){
+    public function datos(Request $request){
         $id = $request->get('id');
-        $model = MaquinasCirculares::where([
-            ['agujas', '=',$id]
-        ])
-        ->get();
+        $txt = '';
+        if ($request->get('tipo')) {
+            $model = MaquinasCirculares::find($id);
+        }
+        else{
+            $model = MaquinasCirculares::where([
+                ['agujas', '=',$id]
+            ])
+            ->get();
+            if (empty($model[0])) {
+                return [
+                    'error' => 'No existe máquina para ese número de Agujas'
+                ];
+            }
+        }
         return $model;
     }
 

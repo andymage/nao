@@ -50,6 +50,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="<?= url('maquinascirculares/index') ?>"><i class="fa fa-circle-o"></i> Lista Máquinas Circulares</a></li>
+            <li><a href="<?= url('crudos/index') ?>"><i class="fa fa-circle-o"></i> Lista Fichas Técnicas Crudo</a></li>
         </ul>
     </li>
 </ul>

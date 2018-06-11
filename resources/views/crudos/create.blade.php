@@ -32,6 +32,7 @@
                         </ul>
                     </div>
 	            @endif
+	            <div id="div_cp" class="custom-alerts alert alert-danger fade in hidden"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button><p id="error"></p></div>
 		        <div class="box-body">
 		            <div class="form-group col-md-6">
 		                <label for="nombre">Cve Corta Libre</label>
@@ -65,6 +66,8 @@
 		                		null,
 		                		[
 		                			'class' => 'form-control',
+		                			'id' => 'id_maquina_circular',
+		                			'onchange' => 'datosMaquina(this.value)'
 		                		]
 		                	);
 		                ?>
@@ -178,8 +181,35 @@
                     'id': valor,
                 },
                 success: function(data){
-                    $('#nombre_obligado').text(data.nombre)
-                    $('#id_obligado_modal').val(data.id);
+                    if (data.error != undefined) {
+                        $('#div_cp').removeClass('hidden');
+                        $('#error').text(data.error);
+                        $('#id_maquina_circular').empty();
+            			$("#id_maquina_circular").append('<option value="">Seleccione</option>');
+                    }
+                    else{
+                        $('#div_cp').addClass('hidden');
+                        $('#id_maquina_circular').empty();
+            			$("#id_maquina_circular").append('<option value="">Seleccione</option>');
+                        $.each(data, function( key2, value2 ) {
+                            $("#id_maquina_circular").append('<option value='+value2.id+'>'+value2.maquina+'</option>');
+                        });
+                    }
+                }
+            })
+		}
+
+		function datosMaquina(id){
+			$.ajax({
+                url: "<?= url('crudos/datos') ?>",
+                type: "post",
+                data: { "_token": "{{ csrf_token() }}",
+                    'id': id,
+                    'tipo': 1
+                },
+                success: function(data){
+                    $('#galga').val(data.galga);
+                    $('#velocidad').val(data.constanteMaquina);
                 }
             })
 		}

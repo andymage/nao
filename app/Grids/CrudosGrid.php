@@ -52,23 +52,29 @@ class CrudosGrid extends Grid implements CrudosGridInterface
 		            "column" => "col-md-1"
 		        ]
 		    ],
-		    "id_clave_hilo" => [
+		    "maquina" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
 		        "filter" => [
 		            "enabled" => true,
 		            "operator" => "="
-		        ]
+		        ],
+                "styles" => [
+                    "column" => "col-md-2"
+                ]
 		    ],
-		    "id_maquina_circular" => [
+		    "agujas" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
 		        "filter" => [
 		            "enabled" => true,
 		            "operator" => "="
-		        ]
+		        ],
+                "styles" => [
+                    "column" => "col-md-1"
+                ]
 		    ],
 		    "gramaje" => [
 		        "search" => [
