@@ -53,4 +53,15 @@
             <li><a href="<?= url('crudos/index') ?>"><i class="fa fa-circle-o"></i> Lista Fichas Técnicas Crudo</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-file-archive-o"></i> <span>Facturas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="<?= url('facturas/index') ?>"><i class="fa fa-circle-o"></i> Entrada de Facturas</a></li>
+        </ul>
+    </li>
 </ul>

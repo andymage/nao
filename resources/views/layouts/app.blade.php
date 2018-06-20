@@ -21,6 +21,10 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
             folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.min.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+        <link rel="stylesheet" href="{{ asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -104,6 +108,7 @@
         <script src="{{ asset('adminlte/bower_components/fastclick/lib/fastclick.js') }}"></script>
         <!-- AdminLTE App -->
         <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+        <script src="{{ asset('adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
 

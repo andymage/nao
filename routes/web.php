@@ -532,3 +532,48 @@ Route::post('crudos/datos', [
 	'middleware' => 'auth',
 	'as' => 'crudos.datos'
 ]);
+
+/**
+ * Rutas Facturas
+ */
+Route::get('facturas/index', [
+	'uses' => 'FacturasController@index',
+	'middleware' => 'auth',
+	'as' => 'facturas.index'
+]);
+
+Route::get('facturas/create', [
+	'uses' => 'FacturasController@create',
+	'middleware' => 'auth',
+	'as' => 'facturas.create'
+]);
+
+Route::post('facturas/store', [
+	'uses' => 'FacturasController@store',
+	'middleware' => 'auth',
+	'as' => 'facturas.store'
+]);
+
+Route::get('facturas/show/{id}', [
+	'uses' => 'FacturasController@show',
+	'middleware' => 'auth',
+	'as' => 'facturas.show'
+]);
+
+Route::get('facturas/destroy/{id}', [
+	'uses' => 'FacturasController@destroy',
+	'middleware' => 'auth',
+	'as' => 'facturas.destroy'
+]);
+
+Route::get('facturas/update/{id}', [
+	'uses' => 'FacturasController@update',
+	'middleware' => 'auth',
+	'as' => 'facturas.update'
+]);
+
+Route::post('facturas/edit/{id}', [
+	'uses' => 'FacturasController@edit',
+	'middleware' => 'auth',
+	'as' => 'facturas.edit'
+]);
