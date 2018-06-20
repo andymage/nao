@@ -81,8 +81,13 @@ class FacturasController extends Controller
 
     public function edit($id, FacturasRequest $request){
     	$model = $this->findModel($id);
-        $model->calibre = $request->get('calibre');
-        $model->cve_corta_hilo = $request->get('cve_corta_hilo');
+        $model->id_proveedor = $request->get('id_proveedor');
+        $model->id_hilo = $request->get('id_hilo');
+        $model->numero_factura = $request->get('numero_factura');
+        $model->kg_hilo = $request->get('kg_hilo');
+        $model->lote_hilo = $request->get('lote_hilo');
+        $model->importe = $request->get('importe');
+        $model->fecha = $request->get('fecha');
     	if ($model->save()) {
     		flash('¡Actualizado Correctamente!')->success();
         	return redirect('facturas/show/' . $model->id);
@@ -98,5 +103,15 @@ class FacturasController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function datos(Request $request){
+        $id = $request->get('id');
+        $model = [];
+        if (!empty($id)) {
+            $model = $this->findModel($id);
+            $model['hilo'] = $model->hilo;
+        }
+        return $model;
     }
 }

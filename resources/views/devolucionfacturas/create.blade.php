@@ -6,18 +6,18 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['facturas/index', 'Lista de Facturas'],
-        ['facturas/show/' . $model->id, 'Actualizar Factura: ' . $model->consecutivoFactura]
+		['devolucionfacturas/index', 'Lista de Devolución de Facturas'],
+		['devolucionfacturas/create/', 'Devolución Factura']
 	]) 
 ?>
 	<div class="col-md-12">
 		<div class="box box-success">
 		    <div class="box-header with-border">
-		        <h3 class="box-title">Actualizar Facturas <?= $model->consecutivoFactura ?></h3>
+		        <h3 class="box-title">Devolución Facturas</h3>
 		    </div>
 		    {!! Form::open(
 		            [
-		                'action' => ['FacturasController@edit', $model->id],
+		                'action' => 'DevolucionFacturasController@store',
 		                'class' => 'form',
 		            ]
 	          	) 
@@ -41,7 +41,7 @@
                   			</div>
 			                <?=
 			                	Form::text('fecha',
-			                		$model->fecha,
+			                		null,
 			                		[
 			                			'class' => 'form-control pull-right',
 			                			'id' => 'fecha'
@@ -51,52 +51,43 @@
 		            	</div>
 		            </div>
 		        	<div class="form-group col-md-6">
-		                <label for="calibre">Proveedor</label>
+		                <label for="calibre">Factura</label>
 		                <?=
-		                	Form::select('id_proveedor', $proveedores,
-		                		$model->id_proveedor,
+		                	Form::select('id_factura', $facturas,
+		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'onchange' => 'datosProveedor(this.value)'
+		                			'onchange' => 'datosFactura(this.value)',
+		                			'id' => 'id_factura'
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            
 		            <div class="form-group col-md-6">
-		                <label for="calibre">Cve Corta</label>
+		                <label for="calibre">Proveedores</label>
 		                <?=
-		                	Form::text('cve_corta',
-		                		$model->proveedor->clave_corta,
+		                	Form::text('proveedor',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Proveedor',
+		                			'readonly' => 'readonly',
+		                			'id' => 'proveedor',
+		                		]
+		                	);
+		                ?>
+		            </div>
+		            <div class="form-group col-md-6">
+		                <label for="calibre">Clave Corta</label>
+		                <?=
+		                	Form::text('clave_corta',
+		                		null,
 		                		[
 		                			'class' => 'form-control',
 		                			'placeholder' => 'Clave Corta',
+		                			'readonly' => 'readonly',
 		                			'id' => 'clave_corta',
-		                			'readonly' => 'readonly'
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="calibre">Número Factura</label>
-		                <?=
-		                	Form::text('numero_factura',
-		                		$model->numero_factura,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'Número Factura',
-		                		]
-		                	);
-		                ?>
-		            </div>
-		            <div class="form-group col-md-6">
-		                <label for="calibre">Kgs Hilo</label>
-		                <?=
-		                	Form::text('kg_hilo',
-		                		$model->kg_hilo,
-		                		[
-		                			'class' => 'form-control',
-		                			'placeholder' => 'Kgs Hilo',
 		                		]
 		                	);
 		                ?>
@@ -105,10 +96,12 @@
 		                <label for="calibre">Lote de Hilo</label>
 		                <?=
 		                	Form::text('lote_hilo',
-		                		$model->lote_hilo,
+		                		null,
 		                		[
 		                			'class' => 'form-control',
 		                			'placeholder' => 'Lote de Hilo',
+		                			'readonly' => 'readonly',
+		                			'id' => 'lote_hilo',
 		                		]
 		                	);
 		                ?>
@@ -116,19 +109,34 @@
 		            <div class="form-group col-md-6">
 		                <label for="calibre">Clave Hilo</label>
 		                <?=
-		                	Form::select('id_hilo', $hilos,
-		                		$model->id_hilo,
+		                	Form::text('id_hilo',
+		                		null,
 		                		[
 		                			'class' => 'form-control',
+		                			'id' => 'id_hilo',
+		                			'readonly' => 'readonly',
 		                		]
 		                	);
 		                ?>
 		            </div>
 		            <div class="form-group col-md-6">
+		                <label for="calibre">Kgs Devueltos</label>
+		                <?=
+		                	Form::text('kg_dev',
+		                		null,
+		                		[
+		                			'class' => 'form-control',
+		                			'placeholder' => 'Kgs Devueltos',
+		                		]
+		                	);
+		                ?>
+		            </div>
+
+		            <div class="form-group col-md-6">
 		                <label for="calibre">Importe</label>
 		                <?=
 		                	Form::number('importe',
-		                		$model->Importe,
+		                		null,
 		                		[
 		                			'class' => 'form-control',
 		                			'step' => 'any'
@@ -137,7 +145,7 @@
 		                ?>
 		            </div>
 		            <div class="box-footer form-group col-md-12">
-		            	<button type="submit" class="btn btn-primary">Actualzar</button>
+		            	<button type="submit" class="btn btn-primary">Crear</button>
 		            </div>
 		        </div>
 	        {!! Form::close() !!}
@@ -152,15 +160,18 @@
       		format: 'yyyy-mm-dd'
     	});
 
-    	function datosProveedor(id){
+    	function datosFactura(id){
 			$.ajax({
-                url: "<?= url('proveedores/datos') ?>",
+                url: "<?= url('facturas/datos') ?>",
                 type: "post",
                 data: { "_token": "{{ csrf_token() }}",
                     'id': id,
                 },
                 success: function(data){
-                    $('#clave_corta').val(data.clave_corta);
+                    $('#proveedor').val(data.proveedor.nombre);
+                    $('#clave_corta').val(data.proveedor.clave_corta);
+                    $('#lote_hilo').val(data.lote_hilo);
+                    $('#id_hilo').val(data.hilo.cve_corta_hilo);
                 }
             })
 		}

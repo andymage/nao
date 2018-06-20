@@ -64,6 +64,13 @@ Route::post('proveedores/edit/{id}', [
 	'as' => 'proveedores.edit'
 ]);
 
+
+Route::post('proveedores/datos', [
+	'uses' => 'ProveedoresController@datos',
+	'middleware' => 'auth',
+	'as' => 'proveedores.datos'
+]);
+
 /**
  * Rutas Clientes
  */
@@ -578,8 +585,54 @@ Route::post('facturas/edit/{id}', [
 	'as' => 'facturas.edit'
 ]);
 
-Route::post('proveedores/datos', [
-	'uses' => 'ProveedoresController@datos',
+Route::post('facturas/datos', [
+	'uses' => 'FacturasController@datos',
 	'middleware' => 'auth',
-	'as' => 'proveedores.datos'
+	'as' => 'facturas.datos'
+]);
+
+
+/**
+ * Rutas Facturas
+ */
+Route::get('devolucionfacturas/index', [
+	'uses' => 'DevolucionFacturasController@index',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.index'
+]);
+
+Route::get('devolucionfacturas/create', [
+	'uses' => 'DevolucionFacturasController@create',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.create'
+]);
+
+Route::post('devolucionfacturas/store', [
+	'uses' => 'DevolucionFacturasController@store',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.store'
+]);
+
+Route::get('devolucionfacturas/show/{id}', [
+	'uses' => 'DevolucionFacturasController@show',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.show'
+]);
+
+Route::get('devolucionfacturas/destroy/{id}', [
+	'uses' => 'DevolucionFacturasController@destroy',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.destroy'
+]);
+
+Route::get('devolucionfacturas/update/{id}', [
+	'uses' => 'DevolucionFacturasController@update',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.update'
+]);
+
+Route::post('devolucionfacturas/edit/{id}', [
+	'uses' => 'DevolucionFacturasController@edit',
+	'middleware' => 'auth',
+	'as' => 'devolucionfacturas.edit'
 ]);

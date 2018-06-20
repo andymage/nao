@@ -62,6 +62,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="<?= url('facturas/index') ?>"><i class="fa fa-circle-o"></i> Entrada de Facturas</a></li>
+            <li><a href="<?= url('devolucionfacturas/index') ?>"><i class="fa fa-circle-o"></i> Devolución de Facturas</a></li>
         </ul>
     </li>
 </ul>
