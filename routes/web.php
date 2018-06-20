@@ -577,3 +577,9 @@ Route::post('facturas/edit/{id}', [
 	'middleware' => 'auth',
 	'as' => 'facturas.edit'
 ]);
+
+Route::post('proveedores/datos', [
+	'uses' => 'ProveedoresController@datos',
+	'middleware' => 'auth',
+	'as' => 'proveedores.datos'
+]);

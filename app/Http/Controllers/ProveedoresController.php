@@ -69,4 +69,13 @@ class ProveedoresController extends Controller
             abort(404);
         }
     }
+
+    public function datos(Request $request){
+        $id = $request->get('id');
+        $model = [];
+        if (!empty($id)) {
+            $model = $this->findModel($id);
+        }
+        return $model;
+    }
 }

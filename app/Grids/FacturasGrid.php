@@ -22,7 +22,6 @@ class FacturasGrid extends Grid implements FacturasGridInterface
     protected $buttonsToGenerate = [
         'create',
         'view',
-        'delete',
         'refresh',
         'export'
     ];
@@ -50,10 +49,10 @@ class FacturasGrid extends Grid implements FacturasGridInterface
 		            "operator" => "="
 		        ],
 		        "styles" => [
-		            "column" => "grid-w-10"
+		            "column" => "col-md-1"
 		        ]
 		    ],
-		    "id_proveedor" => [
+		    "clave_corta" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
@@ -62,7 +61,7 @@ class FacturasGrid extends Grid implements FacturasGridInterface
 		            "operator" => "="
 		        ]
 		    ],
-		    "id_hilo" => [
+		    "cve_corta_hilo" => [
 		        "search" => [
 		            "enabled" => true
 		        ],

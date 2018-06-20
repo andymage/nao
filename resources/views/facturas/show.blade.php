@@ -6,8 +6,8 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['hilos/index', 'Lista de Calibre de Hilos'],
-		['hilos/show/' . $model->id, 'Calibre de Hilo: ' . $model->cve_corta_hilo]
+		['facturas/index', 'Lista de Facturas'],
+        ['facturas/create/', 'Factura: ' . $model->consecutivoFactura]
 	]) 
 ?>
 
@@ -15,7 +15,7 @@
 	<div class="col-md-12">
 		<div class="box">
             <div class="box-header box-success with-border">
-              <h3 class="box-title">Calibre de Hilo <b><?= $model->cve_corta_hilo ?></b></h3>
+              <h3 class="box-title">Factura <b><?= $model->consecutivoFactura ?></b></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -26,13 +26,33 @@
                   			<td width="75%"><?= $model->id ?></td>
                 		</tr>
                 		<tr>
-                  			<td width="25%"><b>Calibre</b></td>
-                  			<td width="75%"><?= $model->calibre ?></td>
+                  			<td width="25%"><b>Proveedor</b></td>
+                  			<td width="75%"><?= $model->proveedor->nombre ?></td>
                 		</tr>
-                    <tr>
-                        <td width="25%"><b>Cve Corta Hilo</b></td>
-                        <td width="75%"><?= $model->cve_corta_hilo ?></td>
-                    </tr>
+                        <tr>
+                            <td width="25%"><b>Proveedor Clave Corta</b></td>
+                            <td width="75%"><?= $model->proveedor->clave_corta ?></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><b>Hilo</b></td>
+                            <td width="75%"><?= $model->hilo->cve_corta_hilo ?></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><b>Número de Factura</b></td>
+                            <td width="75%"><?= $model->numero_factura ?></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><b>Kgs Hilo</b></td>
+                            <td width="75%"><?= $model->kg_hilo ?></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><b>Lote Hilo</b></td>
+                            <td width="75%"><?= $model->lote_hilo ?></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><b>Fecha</b></td>
+                            <td width="75%"><?= $model->fecha ?></td>
+                        </tr>
                 		<tr>
                   			<td width="25%"><b>Registro el usuario</b></td>
                   			<td width="75%"><?= $model->user->name ?></td>

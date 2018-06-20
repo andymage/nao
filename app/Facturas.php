@@ -27,6 +27,10 @@ class Facturas extends Model
 		'fecha',
 	];
 
+	protected $appends = [
+		'consecutivoFactura'
+	];
+
 	public function user(){
 		return $this->hasOne('App\User', 'id', 'id_user');
 	}
@@ -37,6 +41,23 @@ class Facturas extends Model
 
 	public function proveedor(){
 		return $this->hasOne('App\Proveedores', 'id', 'id_proveedor');
+	}
+
+	public static function getConsecutivo(){
+		$suma = '01';
+		$model = self::orderBy('id', 'DESC')->first();
+		if (!empty($model)) {
+			$suma = $model->consecutivo + 1;
+			if (strlen($suma) <= 9) {
+				$suma = '0' . $suma;
+			}
+		}
+		return $suma;
+	}
+
+	public function getConsecutivoFacturaAttribute(){
+		$date = New \DateTime($this->fecha_alta);
+		return $date->format('y') . '-' . $this->proveedor->clave_corta . '-' . $this->consecutivo;
 	}
 
 }

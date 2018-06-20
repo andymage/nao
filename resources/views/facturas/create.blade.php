@@ -57,6 +57,7 @@
 		                		null,
 		                		[
 		                			'class' => 'form-control',
+		                			'onchange' => 'datosProveedor(this.value)'
 		                		]
 		                	);
 		                ?>
@@ -70,7 +71,8 @@
 		                		[
 		                			'class' => 'form-control',
 		                			'placeholder' => 'Clave Corta',
-		                			'readonly' => 'readonly'
+		                			'readonly' => 'readonly',
+		                			'id' => 'clave_corta',
 		                		]
 		                	);
 		                ?>
@@ -149,5 +151,18 @@
       		autoclose: true,
       		format: 'yyyy-mm-dd'
     	});
+
+    	function datosProveedor(id){
+			$.ajax({
+                url: "<?= url('proveedores/datos') ?>",
+                type: "post",
+                data: { "_token": "{{ csrf_token() }}",
+                    'id': id,
+                },
+                success: function(data){
+                    $('#clave_corta').val(data.clave_corta);
+                }
+            })
+		}
 	</script>
 @stop

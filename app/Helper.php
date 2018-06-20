@@ -84,7 +84,7 @@ class Helper
         $cuenta = count($array);
         $i = 1;
 		foreach ($array as $key => $value) {
-			$crumbs .= self::APERTURA ;
+			$crumbs .= self::APERTURA;
 			$action = \Html::link($value[0], $value[1]);
 			$crumbs .=  $action;
 			$crumbs .= self::CIERRE;

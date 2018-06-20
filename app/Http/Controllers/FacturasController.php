@@ -42,7 +42,7 @@ class FacturasController extends Controller
     }
 
     public function create(){
-        $proveedores = Helper::arrayHelperSelect(Proveedores::pluck('clave_corta', 'id')->toArray());
+        $proveedores = Helper::arrayHelperSelect(Proveedores::pluck('nombre', 'id')->toArray());
         $hilos = Helper::arrayHelperSelect(Hilos::pluck('cve_corta_hilo', 'id')->toArray());
     	return view('facturas.create',[
             'proveedores' => $proveedores,
@@ -52,7 +52,8 @@ class FacturasController extends Controller
 
     public function store(FacturasRequest $request){
     	$data = $request->all();
-    	$data['id_user'] = $request->user()->id;
+        $data['id_user'] = $request->user()->id;
+    	$data['consecutivo'] = Facturas::getConsecutivo();
     	$model = Facturas::create($data);
     	flash('¡Creado Correctamente!')->success();
         return redirect('facturas/show/' . $model->id);
@@ -69,8 +70,12 @@ class FacturasController extends Controller
 
     public function update($id){
     	$model = $this->findModel($id);
+        $proveedores = Helper::arrayHelperSelect(Proveedores::pluck('nombre', 'id')->toArray());
+        $hilos = Helper::arrayHelperSelect(Hilos::pluck('cve_corta_hilo', 'id')->toArray());
     	return view('facturas.update',[
-    		'model' => $model
+    		'model' => $model,
+            'proveedores' => $proveedores,
+            'hilos' => $hilos,
     	]);
     }
 
