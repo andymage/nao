@@ -65,4 +65,15 @@
             <li><a href="<?= url('devolucionfacturas/index') ?>"><i class="fa fa-circle-o"></i> Devolución de Facturas</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-shopping-cart"></i> <span>Pedidos</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="<?= url('pedidos/index') ?>"><i class="fa fa-circle-o"></i> Lista de Pedidos</a></li>
+        </ul>
+    </li>
 </ul>

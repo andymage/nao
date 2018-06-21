@@ -13,7 +13,7 @@ class AddPedidosTelaTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedido_telas', function (Blueprint $table) {
+        Schema::create('pedidos_telas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_user')->unsigned();
             $table->integer('id_tela')->unsigned();
@@ -22,6 +22,10 @@ class AddPedidosTelaTable extends Migration
             $table->float('color')->nullable();
             $table->dateTime('fecha_alta');
             $table->dateTime('fecha_actualizacion');
+            $table->index('id_tela', 'my_id_tela_pedidos_telas');
+            $table->foreign('id_tela')->references('id')->on('telas_cliente');
+            $table->index('id_user', 'my_id_user_pedidos_telas');
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
@@ -32,6 +36,14 @@ class AddPedidosTelaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedido_telas');
+        $table->dropForeign([
+            'id_user',
+            'id_tela',
+        ]);
+        $table->dropIndex([
+            'my_id_tela_pedidos_telas',
+            'my_id_user_pedidos_telas',
+        ]);
+        Schema::dropIfExists('pedidos_telas');
     }
 }

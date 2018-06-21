@@ -116,6 +116,12 @@ Route::post('clientes/edit/{id}', [
 	'as' => 'clientes.edit'
 ]);
 
+Route::post('clientes/datos', [
+	'uses' => 'ClientesController@datos',
+	'middleware' => 'auth',
+	'as' => 'clientes.datos'
+]);
+
 /**
  * Rutas Materiales
  */
@@ -593,7 +599,7 @@ Route::post('facturas/datos', [
 
 
 /**
- * Rutas Facturas
+ * Rutas Devolución Facturas
  */
 Route::get('devolucionfacturas/index', [
 	'uses' => 'DevolucionFacturasController@index',
@@ -635,4 +641,49 @@ Route::post('devolucionfacturas/edit/{id}', [
 	'uses' => 'DevolucionFacturasController@edit',
 	'middleware' => 'auth',
 	'as' => 'devolucionfacturas.edit'
+]);
+
+/**
+ * Rutas Pedidos
+ */
+Route::get('pedidos/index', [
+	'uses' => 'PedidosController@index',
+	'middleware' => 'auth',
+	'as' => 'pedidos.index'
+]);
+
+Route::get('pedidos/create', [
+	'uses' => 'PedidosController@create',
+	'middleware' => 'auth',
+	'as' => 'pedidos.create'
+]);
+
+Route::post('pedidos/store', [
+	'uses' => 'PedidosController@store',
+	'middleware' => 'auth',
+	'as' => 'pedidos.store'
+]);
+
+Route::get('pedidos/show/{id}', [
+	'uses' => 'PedidosController@show',
+	'middleware' => 'auth',
+	'as' => 'pedidos.show'
+]);
+
+Route::get('pedidos/destroy/{id}', [
+	'uses' => 'PedidosController@destroy',
+	'middleware' => 'auth',
+	'as' => 'pedidos.destroy'
+]);
+
+Route::get('pedidos/update/{id}', [
+	'uses' => 'PedidosController@update',
+	'middleware' => 'auth',
+	'as' => 'pedidos.update'
+]);
+
+Route::post('pedidos/edit/{id}', [
+	'uses' => 'PedidosController@edit',
+	'middleware' => 'auth',
+	'as' => 'pedidos.edit'
 ]);
