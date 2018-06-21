@@ -11,7 +11,9 @@ use App\Materiales;
 use App\Http\Requests\ComposicionHiloRequest;
 use App\ComposicionHilo;
 use App\Clientes;
+use Illuminate\Support\Facades\DB;
 use App\TelasCliente;
+use App\PedidosTelas;
 
 class PedidosController extends Controller
 {
@@ -38,9 +40,32 @@ class PedidosController extends Controller
     public function store(PedidosRequest $request){
     	$data = $request->all();
     	$data['id_user'] = $request->user()->id;
-    	$model = Pedidos::create($data);
-    	flash('¡Creado Correctamente!')->success();
-        return redirect('pedidos/show/' . $model->id);
+        DB::beginTransaction();
+        try {
+        	$model = Pedidos::create($data);
+            $datos['Productos'] =  $request->get('Productos');
+            $arreglo = [];
+            $i = 0;
+            foreach ($datos['Productos'] as $key => $value) {
+                foreach ($value as $key2 => $value2) {
+                    $arreglo[$key2][$key] = $value2;
+                }
+                $i++;
+            }
+            foreach ($arreglo as $key => $value) {
+                $datos_w = $value;
+                $datos_w['id_user'] = $request->user()->id;
+                $datos_w['id_pedido'] = $model->id;
+                $model_datos = PedidosTelas::create($datos_w);
+            }
+            DB::commit();
+        	flash('¡Creado Correctamente!')->success();
+            return redirect('pedidos/show/' . $model->id);
+        } catch (Exception $e) {
+            DB::rollback();
+            flash('¡Ocurrió un Error!')->error();
+            return redirect('pedidos/index');
+        }
     }
 
     public function show($id){
@@ -50,7 +75,7 @@ class PedidosController extends Controller
     	]);
     }
 
-    public function update($id){
+   /* public function update($id){
     	$model = $this->findModel($id);
     	return view('pedidos.update',[
     		'model' => $model
@@ -67,7 +92,7 @@ class PedidosController extends Controller
     	}
     	flash('¡Ocurrió un error, inténtalo nuevamente!')->success();
         return redirect('pedidos/show/' . $model->id);
-    }
+    }*/
 
     protected function findModel($id)
     {

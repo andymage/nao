@@ -6,8 +6,8 @@
 @section('content')
 <?= 
 	Helper::breadCrumbs([
-		['facturas/index', 'Lista de Facturas'],
-        ['facturas/create/', 'Factura: ' . $model->consecutivoFactura]
+		['pedidos/index', 'Lista de Pedidos'],
+        ['pedidos/create/', 'Pedido: ' . $model->id]
 	]) 
 ?>
 
@@ -15,7 +15,7 @@
 	<div class="col-md-12">
 		<div class="box">
             <div class="box-header box-success with-border">
-              <h3 class="box-title">Factura <b><?= $model->consecutivoFactura ?></b></h3>
+              <h3 class="box-title">Pedido <b><?= $model->id ?></b></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -26,39 +26,50 @@
                   			<td width="75%"><?= $model->id ?></td>
                 		</tr>
                 		<tr>
-                  			<td width="25%"><b>Proveedor</b></td>
-                  			<td width="75%"><?= $model->proveedor->nombre ?></td>
+                  			<td width="25%"><b>Cliente</b></td>
+                  			<td width="75%"><?= $model->cliente->nombre ?></td>
                 		</tr>
                         <tr>
-                            <td width="25%"><b>Proveedor Clave Corta</b></td>
-                            <td width="75%"><?= $model->proveedor->clave_corta ?></td>
-                        </tr>
-                        <tr>
-                            <td width="25%"><b>Hilo</b></td>
-                            <td width="75%"><?= $model->hilo->cve_corta_hilo ?></td>
-                        </tr>
-                        <tr>
-                            <td width="25%"><b>Número de Factura</b></td>
-                            <td width="75%"><?= $model->numero_factura ?></td>
-                        </tr>
-                        <tr>
-                            <td width="25%"><b>Kgs Hilo</b></td>
-                            <td width="75%"><?= $model->kg_hilo ?></td>
-                        </tr>
-                        <tr>
-                            <td width="25%"><b>Lote Hilo</b></td>
-                            <td width="75%"><?= $model->lote_hilo ?></td>
+                            <td width="25%"><b>Cliente Clave Corta</b></td>
+                            <td width="75%"><?= $model->cliente->clave_corta ?></td>
                         </tr>
                         <tr>
                             <td width="25%"><b>Fecha</b></td>
                             <td width="75%"><?= $model->fecha ?></td>
                         </tr>
-                		<tr>
-                  			<td width="25%"><b>Registro el usuario</b></td>
-                  			<td width="75%"><?= $model->user->name ?></td>
-                		</tr>
+                        <tr>
+                            <td width="25%"><b>Usuario Creador</b></td>
+                            <td width="75%"><?= $model->user->name ?></td>
+                        </tr>
               		</tbody>
               	</table>
+                <div class="box-header box-success with-border">
+                    <h3 class="box-title"><b>Telas</b></h3>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Modelo Tela</th>
+                            <th>Descripción del Modelo</th>
+                            <th>Kgs a Programar</th>
+                            <th>Piezas Rec.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($model->productos as $key => $value) {
+                                echo '
+                                    <tr>
+                                        <td>' . $value->tela->modeloTela . '</td>
+                                        <td>' . $value->tela->descripcion . '</td>
+                                        <td>' . $value->kg_programar . '</td>
+                                        <td>' . $value->piezas . '</td>
+                                    </tr>';
+                                
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 	</div>

@@ -27,5 +27,9 @@ class Pedidos extends Model
 	public function cliente(){
 		return $this->hasOne('App\Clientes', 'id', 'id_cliente');
 	}
+
+	public function productos(){
+		return $this->hasMany('App\PedidosTelas', 'id_pedido', 'id');
+	}
 	
 }

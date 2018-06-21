@@ -75,15 +75,20 @@
 			                ?>
 		            	</div>
 		            </div>
-
+		        	<div class="form-group col-md-12">
+		        		<a class="btn btn-app success" onclick="agregar()">
+                			<i class="fa fa-plus"></i> Agregar
+              			</a>
+		        	</div>
 		            <div class="form-group col-md-2">
 		                <label for="calibre">Modelo Tela</label>
 		                <?=
-		                	Form::select('id_tela[]', $telas,
+		                	Form::select('Productos[id_tela][]', [],
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'onchange' => 'datosCliente(this.value)'
+		                			'onchange' => 'datosTela(this.value, 0)',
+		                			'id' => 'id_tela_0'
 		                		]
 		                	);
 		                ?>
@@ -91,11 +96,12 @@
 		            <div class="form-group col-md-2">
 		                <label for="calibre">Descripción del Modelo</label>
 		                <?=
-		                	Form::text('descripcion_modelo[]',
+		                	Form::text('Productos[descripcion_modelo][]',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'readonly' => 'readonly'
+		                			'readonly' => 'readonly',
+		                			'id' => 'descripcion_modelo_0'
 		                		]
 		                	);
 		                ?>
@@ -103,11 +109,12 @@
 		            <div class="form-group col-md-2">
 		                <label for="calibre">Kgs a Programar</label>
 		                <?=
-		                	Form::number('kg_programar[]',
+		                	Form::number('Productos[kg_programar][]',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'step' => 'any'
+		                			'step' => 'any',
+		                			'id' => 'kg_programar_0'
 		                		]
 		                	);
 		                ?>
@@ -115,26 +122,18 @@
 		            <div class="form-group col-md-2">
 		                <label for="calibre">Piezas Rec.</label>
 		                <?=
-		                	Form::number('piezas',
+		                	Form::number('Productos[piezas][]',
 		                		null,
 		                		[
 		                			'class' => 'form-control',
-		                			'step' => 'any'
+		                			'step' => 'any',
+		                			'id' => 'piezas_0'
 		                		]
 		                	);
 		                ?>
 		            </div>
-		            <div class="form-group col-md-2">
-		                <label for="calibre">Cliente</label>
-		                <?=
-		                	Form::select('id_cliente', $clientes,
-		                		null,
-		                		[
-		                			'class' => 'form-control',
-		                			'onchange' => 'datosCliente(this.value)'
-		                		]
-		                	);
-		                ?>
+		            <div id="agregado">
+		            	
 		            </div>
 		            
 		            <div class="box-footer form-group col-md-12">
@@ -152,6 +151,7 @@
       		autoclose: true,
       		format: 'yyyy-mm-dd'
     	});
+		llenado(0);
 
     	function datosCliente(id){
 			$.ajax({
@@ -164,6 +164,58 @@
                     $('#clave_cliente').val(data.clave_corta);
                 }
             })
+		}
+		i = 0;
+		function agregar(){
+		    i++;
+			$('#agregado').append(
+				'<div class="form-group col-md-12"> </div>' +
+		        '<div class="form-group col-md-2"><label for="calibre">Modelo Tela</label>' +
+		        	'<select id="id_tela_' + i + '" name="Productos[id_tela][]" class="form-control" onchange="datosTela(this.value, ' + i + ')"></select>' +
+		        '</div>' +
+		        '<div class="form-group col-md-2"><label for="calibre">Descripción del Modelo</label>' +
+		            '<input type="text" name="Productos[descripcion_modelo][]" id="descripcion_modelo_' + i + '" class="form-control" readonly="readonly">' +
+		        '</div>' +
+		        '<div class="form-group col-md-2"><label for="calibre">Kgs a Programar</label>' +
+		            '<?= Form::number("Productos[kg_programar][]", null, ["id" => "", "class" => "form-control", "step" => "any" ] ); ?>' +
+		        '</div>' +
+		        '<div class="form-group col-md-2"><label for="calibre">Piezas Rec.</label>' +
+		            '<?= Form::number("Productos[piezas][]", null, ["id" => "", "class" => "form-control", "step" => "any" ] ); ?>' +
+		        '</div>'
+		    );
+		    llenado(i);
+		}
+
+		function llenado(value){
+			$("#id_tela[" + value + "]").append('<option value="">Seleccione</option>');
+		    $.ajax({
+                url: "<?= url('telascliente/datos') ?>",
+                type: "get",
+                data: {
+                	 "_token": "{{ csrf_token() }}",
+                },
+                success: function(data){
+                    $("#id_tela_" + value).empty();
+        			$("#id_tela_" + value).append('<option value="">Seleccione</option>');
+                    $.each(data, function( key2, value2 ) {
+                        $("#id_tela_" + value).append('<option value='+value2.id+'>'+value2.modeloTela+'</option>');
+                    });
+                   
+                }
+            });
+		}
+
+		function datosTela(value, id){
+			$.ajax({
+                url: "<?= url('telascliente/datos') ?>",
+                type: "get",
+                data: { "_token": "{{ csrf_token() }}",
+                    'id': value,
+                },
+                success: function(data){
+                    $('#descripcion_modelo_' + id).val(data.descripcion);
+                }
+            });
 		}
 	</script>
 @stop

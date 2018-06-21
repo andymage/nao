@@ -450,6 +450,12 @@ Route::post('telascliente/edit/{id}', [
 	'as' => 'telascliente.edit'
 ]);
 
+Route::get('telascliente/datos', [
+	'uses' => 'TelasClienteController@datos',
+	'middleware' => 'auth',
+	'as' => 'telascliente.datos'
+]);
+
 /**
  * Rutas Máquinas Circulares
  */

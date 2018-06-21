@@ -16,6 +16,7 @@ class PedidosTelas extends Model
 	protected $fillable = [
 		'id_user',
 		'id_tela',
+		'id_pedido',
 		'kg_programar',
 		'piezas',
 		'color',
@@ -29,4 +30,7 @@ class PedidosTelas extends Model
 		return $this->hasOne('App\TelasCliente', 'id', 'id_tela');
 	}
 	
+	public function pedido(){
+		return $this->hasOne('App\Pedidos', 'id', 'id_pedido');
+	}
 }

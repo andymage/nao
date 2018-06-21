@@ -102,4 +102,11 @@ class TelasClienteController extends Controller
             abort(404);
         }
     }
+
+    public function datos(Request $request){
+        if ($request->get('id')) {
+            return $this->findModel($request->get('id'));
+        }
+        return TelasCliente::get();
+    }
 }
