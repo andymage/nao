@@ -169,7 +169,7 @@
 		function agregar(){
 		    i++;
 			$('#agregado').append(
-				'<div class="form-group col-md-12"> </div>' +
+				'<div id="remover_' + i + '"><div class="form-group col-md-12"> </div>' +
 		        '<div class="form-group col-md-2"><label for="calibre">Modelo Tela</label>' +
 		        	'<select id="id_tela_' + i + '" name="Productos[id_tela][]" class="form-control" onchange="datosTela(this.value, ' + i + ')"></select>' +
 		        '</div>' +
@@ -181,7 +181,8 @@
 		        '</div>' +
 		        '<div class="form-group col-md-2"><label for="calibre">Piezas Rec.</label>' +
 		            '<?= Form::number("Productos[piezas][]", null, ["id" => "", "class" => "form-control", "step" => "any" ] ); ?>' +
-		        '</div>'
+		        '</div>' +
+		        '<div class="form-group col-md-2"><br><button type="button" class="btn btn-danger btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove" onclick="remove(' + i + ')"><i class="fa fa-times"></i></button></div></div>'
 		    );
 		    llenado(i);
 		}
@@ -217,5 +218,10 @@
                 }
             });
 		}
+
+		function remove(id){
+			$('#remover_' + id).remove();
+		}
+
 	</script>
 @stop
