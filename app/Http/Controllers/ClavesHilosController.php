@@ -12,21 +12,22 @@ use App\Http\Requests\ComposicionHiloRequest;
 use App\ComposicionHilo;
 use App\Hilos;
 use App\Texturas;
+use Illuminate\Support\Facades\DB;
 
 class ClavesHilosController extends Controller
 {
     public function index(Request $request){
         $array = Helper::getQuery($request->all(), [
             'id' => 'claves_hilos.id',
-            'cve_corta_hilo' => 'cve_corta_hilo',
-            'cve_corta_composicion' => 'cve_corta_composicion',
-            'cve_corta_textura' => 'cve_corta_textura',
+            'calibre' => 'calibre',
+            'suma' => 'suma',
+            'textura' => 'textura',
         ]);
     	$model = ClavesHilos::select([
                 'claves_hilos.id as id',
-                'cve_corta_hilo',
-                'cve_corta_composicion',
-                'cve_corta_textura'
+                'calibre',
+                DB::raw('(select sum(porcentaje) from porcentaje_composicion_hilo where composicion_hilo.id = porcentaje_composicion_hilo.id_composicion_hilo) as suma'),
+                'textura'
             ])
             ->join('texturas', 'texturas.id', '=', 'claves_hilos.id_textura')
             ->join('hilos', 'hilos.id', '=', 'claves_hilos.id_hilo')

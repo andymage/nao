@@ -21,6 +21,7 @@ class CreateClavesHilosTable extends Migration
             $table->integer('id_textura')->unsigned();
             $table->dateTime('fecha_alta');
             $table->dateTime('fecha_actualizacion');
+            
             $table->index('id_user', 'my_id_user_claves_hilos');
             $table->foreign('id_user')->references('id')->on('users');
             $table->index('id_hilo', 'my_id_hilo_claves_hilos');

@@ -52,7 +52,7 @@ class ClavesHilosGrid extends Grid implements ClavesHilosGridInterface
 		            "column" => "grid-w-10"
 		        ]
 		    ],
-		    "cve_corta_hilo" => [
+		    "calibre" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
@@ -61,16 +61,18 @@ class ClavesHilosGrid extends Grid implements ClavesHilosGridInterface
 		            "operator" => "like"
 		        ]
 		    ],
-		    "cve_corta_composicion" => [
+		    "suma" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
 		        "filter" => [
-		            "enabled" => true,
+		            "enabled" => false,
 		            "operator" => "like"
-		        ]
+		        ],
+                "sort" => false,
+                "label" => 'Porcentaje'
 		    ],
-		    "cve_corta_textura" => [
+		    "textura" => [
 		        "search" => [
 		            "enabled" => true
 		        ],
